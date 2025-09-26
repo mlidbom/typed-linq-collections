@@ -23,13 +23,12 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Typing :: Typed"
 ]
+requires-python = ">=3.13"
 
 [project.urls]
 Homepage = "https://github.com/mlidbom/typed-linq-collections"
 Repository = "https://github.com/mlidbom/typed-linq-collections"
 Issues = "https://github.com/mlidbom/typed-linq-collections/issues"
-
-requires-python = ">=3.13"
 
 [tool.ruff]
 extend-exclude = []
