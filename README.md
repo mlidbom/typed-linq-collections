@@ -42,7 +42,7 @@ def test_querying_with_queryable_collections() -> None:
 ### Core Collections
 Drop in replacements for the built in collections.
 - **`QList[T]`** - Queryable list (mutable sequence)
-- **`QSequence[T]`** - Queryable immutable sequence~~~~
+- **`QSequence[T]`** - Queryable immutable sequence
 - **`QSet[T]`** - Queryable set (mutable)
 - **`QFrozenSet[T]`** - Queryable frozen set (immutable)
 - **`QDict[K, V]`** - Queryable dictionary

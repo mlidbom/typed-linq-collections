@@ -29,9 +29,9 @@ classifiers = [
 requires-python = ">=3.13"
 
 [project.urls]
-Homepage = "https://github.com/mlidbom/typed-linq-collections"
-Repository = "https://github.com/mlidbom/typed-linq-collections"
-Issues = "https://github.com/mlidbom/typed-linq-collections/issues"
+Homepage = "https://github.com/mlidbom/typed_linq_collections"
+Repository = "https://github.com/mlidbom/typed_linq_collections"
+Issues = "https://github.com/mlidbom/typed_linq_collections/issues"
 
 [tool.ruff]
 extend-exclude = []
