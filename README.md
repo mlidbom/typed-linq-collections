@@ -8,7 +8,7 @@ A Python LINQ library with full type annotations, lazy evaluation and collection
 
 ## Features
 - **Rich Query API**: Almost the full Enumerable set of operators form .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
-- **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. It vscode refactoring within the lambdas work like a charm
+- **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
 - **Lazy Evaluation**: Efficient query execution with deferred evaluation
 - **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
 - **Numeric Specializations**: Dedicated types for `int`, `float`, `Decimal`, and `Fraction` collections
