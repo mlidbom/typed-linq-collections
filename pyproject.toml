@@ -7,7 +7,7 @@ where = ["src"]
 
 [project]
 name = "typed_linq_collections"
-version = "0.1.0"
+version = "0.0.1"
 description = "A Python LINQ library with full type annotations, lazy evaluation and collection types that are drop in replacements for standard Python collections."
 readme = "README.md"
 authors = [
