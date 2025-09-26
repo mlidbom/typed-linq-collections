@@ -8,33 +8,34 @@ A Python LINQ library with full type annotations, lazy evaluation and collection
 
 ## Features
 - **Rich Query API**: Almost the full Enumerable set of operators form .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
-- **Comprehensive type annotions**: Complete type annotations with support for Python 3.13+ generics
+- **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. It vscode refactoring within the lambdas work like a charm
 - **Lazy Evaluation**: Efficient query execution with deferred evaluation
-- **Drop-in compatible collection types**: Collection types that seamlessly replace standard Python collections
+- **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
 - **Numeric Specializations**: Dedicated types for `int`, `float`, `Decimal`, and `Fraction` collections
-- **Extensible Design**: QIterable is an abstract that can be subclassed by any Iterable type to add full querying capabilities
+- **Extensible Design**: QIterable is an abstract class/mixin that can be subclassed by any Iterable type to add full querying capabilities
 
 ## Quick Start
-    from queryablecollections.collections.q_list import QList
-    from queryablecollections.q_iterable import query
-    
-    
-    def test_querying_built_in_collections() -> None:
-        fruits_by_first_character = (query(["apple", "apricot",  "mango", "melon", "peach", "pineapple"])
-                                     .group_by(lambda fruit: fruit[0])
-                                     .where(lambda group: group.key in {"a", "p"})
-                                     .to_list())
-    
-        assert fruits_by_first_character == [['apple', 'apricot'], ['peach', 'pineapple']]
-    
-    def test_querying_with_queryable_collections() -> None:
-        fruits_by_first_character = (QList(("apple", "apricot",  "mango", "melon", "peach", "pineapple"))
-                                     .group_by(lambda fruit: fruit[0])
-                                     .where(lambda group: group.key in {"a", "p"})
-                                     .to_list())
-    
-        assert fruits_by_first_character == [['apple', 'apricot'], ['peach', 'pineapple']]
+```python
+from queryablecollections.collections.q_list import QList
+from queryablecollections.q_iterable import query
 
+
+def test_querying_built_in_collections() -> None:
+    fruits_by_first_character = (query(["apple", "apricot",  "mango", "melon", "peach", "pineapple"])
+                                 .group_by(lambda fruit: fruit[0])
+                                 .where(lambda group: group.key in {"a", "p"})
+                                 .to_list())
+
+    assert fruits_by_first_character == [['apple', 'apricot'], ['peach', 'pineapple']]
+
+def test_querying_with_queryable_collections() -> None:
+    fruits_by_first_character = (QList(("apple", "apricot",  "mango", "melon", "peach", "pineapple"))
+                                 .group_by(lambda fruit: fruit[0])
+                                 .where(lambda group: group.key in {"a", "p"})
+                                 .to_list())
+
+    assert fruits_by_first_character == [['apple', 'apricot'], ['peach', 'pineapple']]
+```
 
 ## Collection Types
 
