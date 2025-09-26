@@ -1,0 +1,4 @@
+pytest
+ruff
+basedpyright # used via the basedpyright-wrapper.bat since it messes up source navigation in the IDE and because the IDE only reports some errors on code insection. To get all errors the command line is needed&
+pyright # used in the IDE since basedpyright messes up source navigation
