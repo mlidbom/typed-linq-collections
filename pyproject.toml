@@ -1,4 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
+name = "typed-linq-collections"
+version = "0.1.0"
+dependencies = []
+description = "A Python LINQ library with full type annotations, lazy evaluation and collection types that are drop in replacements for standard Python collections."
+authors = [
+    { name = "mlidbom" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed"
+]
+
+[project.urls]
+Homepage = "https://github.com/mlidbom/typed-linq-collections"
+Repository = "https://github.com/mlidbom/typed-linq-collections"
+Issues = "https://github.com/mlidbom/typed-linq-collections/issues"
+
 requires-python = ">=3.13"
 
 [tool.ruff]
@@ -53,20 +79,20 @@ ignore = [
 ]
 
 [tool.pyright]
-include=["src", "tests"]
-extraPaths=["src", "tests"]
-exclude=["**/node_modules", "**/__pycache__", "**/.*", "**venv/*"]
-typeCheckingMode="strict" # "off", "basic", "standard", "strict", "recommended", "all"
+include = ["src", "tests"]
+extraPaths = ["src", "tests"]
+exclude = ["**/node_modules", "**/__pycache__", "**/.*", "**venv/*"]
+typeCheckingMode = "strict" # "off", "basic", "standard", "strict", "recommended", "all"
 
 #forced because of incompatibility between basedpyright and pyright, remove once we can use only basedpyright
 reportIgnoreCommentWithoutRule = "none"
 reportUnnecessaryTypeIgnoreComment = "none"
 
 # not too sure about this one. Gives some hella confusing results making me wonder if it is really accurate....
-reportImportCycles =  "none"
+reportImportCycles = "none"
 
 #  "questionable if these are useful =  "",
 reportUnusedCallResult = "none"
 
 # we probably really don't need these
-reportImplicitRelativeImport="none"
+reportImplicitRelativeImport = "none"
