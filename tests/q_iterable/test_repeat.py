@@ -2,8 +2,8 @@
 from __future__ import annotations
 
 import pytest
-from queryablecollections.q_errors import ArgumentError
-from queryablecollections.q_iterable import QIterable
+from typed_linq_collections.q_errors import ArgumentError
+from typed_linq_collections.q_iterable import QIterable
 
 
 def test_repeats_element_specified_number_of_times() -> None:

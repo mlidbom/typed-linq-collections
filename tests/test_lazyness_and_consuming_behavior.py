@@ -4,7 +4,7 @@ from collections.abc import Callable, Iterable
 from decimal import Decimal
 from fractions import Fraction
 
-from queryablecollections.q_iterable import QIterable, query
+from typed_linq_collections.q_iterable import QIterable, query
 
 
 def swallow_exception_decorator(inner: ScalarOrActionOperator) -> ScalarOrActionOperator:

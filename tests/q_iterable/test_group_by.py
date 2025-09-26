@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from queryablecollections.collections.q_list import QList
-from queryablecollections.q_iterable import query
+from typed_linq_collections.collections.q_list import QList
+from typed_linq_collections.q_iterable import query
 
 
 def test_group_by_first_character_of_string_returns_one_group_per_unique_first_character_in_the_order_encountered() -> None:

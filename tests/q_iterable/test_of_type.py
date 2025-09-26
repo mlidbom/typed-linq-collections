@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from queryablecollections.q_iterable import query
+from typed_linq_collections.q_iterable import query
 
 
 def test_of_type_filters_by_type() -> None:

@@ -15,13 +15,13 @@ A Python LINQ library with full type annotations, lazy evaluation and collection
 - **Extensible Design**: QIterable is an abstract class/mixin that can be subclassed by any Iterable type to add full querying capabilities
 
 ## Quick Start
-```python
-from queryablecollections.collections.q_list import QList
-from queryablecollections.q_iterable import query
 
+```python
+from typed_linq_collections.collections.q_list import QList
+from typed_linq_collections.q_iterable import query
 
 def test_querying_built_in_collections() -> None:
-    fruits_by_first_character = (query(["apple", "apricot",  "mango", "melon", "peach", "pineapple"])
+    fruits_by_first_character = (query(["apple", "apricot", "mango", "melon", "peach", "pineapple"])
                                  .group_by(lambda fruit: fruit[0])
                                  .where(lambda group: group.key in {"a", "p"})
                                  .to_list())
@@ -29,7 +29,7 @@ def test_querying_built_in_collections() -> None:
     assert fruits_by_first_character == [['apple', 'apricot'], ['peach', 'pineapple']]
 
 def test_querying_with_queryable_collections() -> None:
-    fruits_by_first_character = (QList(("apple", "apricot",  "mango", "melon", "peach", "pineapple"))
+    fruits_by_first_character = (QList(("apple", "apricot", "mango", "melon", "peach", "pineapple"))
                                  .group_by(lambda fruit: fruit[0])
                                  .where(lambda group: group.key in {"a", "p"})
                                  .to_list())
@@ -42,7 +42,7 @@ def test_querying_with_queryable_collections() -> None:
 ### Core Collections
 Drop in replacements for the built in collections.
 - **`QList[T]`** - Queryable list (mutable sequence)
-- **`QSequence[T]`** - Queryable immutable sequence
+- **`QSequence[T]`** - Queryable immutable sequence~~~~
 - **`QSet[T]`** - Queryable set (mutable)
 - **`QFrozenSet[T]`** - Queryable frozen set (immutable)
 - **`QDict[K, V]`** - Queryable dictionary

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from queryablecollections.q_iterable import query
+from typed_linq_collections.q_iterable import query
 
 
 def test_take_last_returns_the_last_x_elements() -> None:

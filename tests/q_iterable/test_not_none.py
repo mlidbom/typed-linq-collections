@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from queryablecollections.collections.q_list import QList
+from typed_linq_collections.collections.q_list import QList
 from test_common_helpers import value_test_including_unordered_collections
 
 

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from queryablecollections.collections.numeric.q_int_types import QIntList
-from queryablecollections.q_errors import EmptyIterableError
+from typed_linq_collections.collections.numeric.q_int_types import QIntList
+from typed_linq_collections.q_errors import EmptyIterableError
 from test_common_helpers import *
 
 

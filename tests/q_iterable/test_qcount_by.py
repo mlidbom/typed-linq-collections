@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from queryablecollections.collections.q_key_value_pair import KeyValuePair
-from queryablecollections.collections.q_list import QList
-from queryablecollections.q_iterable import query
+from typed_linq_collections.collections.q_key_value_pair import KeyValuePair
+from typed_linq_collections.collections.q_list import QList
+from typed_linq_collections.q_iterable import query
 from test_common_helpers import lists_value_test
 
 

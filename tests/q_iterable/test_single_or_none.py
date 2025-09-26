@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from queryablecollections.q_errors import InvalidOperationError
+from typed_linq_collections.q_errors import InvalidOperationError
 from test_common_helpers import throws_test, value_test_including_unordered_collections
 
 

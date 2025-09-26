@@ -3,11 +3,11 @@ from __future__ import annotations
 from decimal import Decimal
 from fractions import Fraction
 
-from queryablecollections.collections.numeric.q_decimal_types import QDecimalIterable
-from queryablecollections.collections.numeric.q_float_types import QFloatIterable
-from queryablecollections.collections.numeric.q_fraction_types import QFractionIterable
-from queryablecollections.collections.numeric.q_int_types import QIntIterable
-from queryablecollections.collections.q_list import QList
+from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalIterable
+from typed_linq_collections.collections.numeric.q_float_types import QFloatIterable
+from typed_linq_collections.collections.numeric.q_fraction_types import QFractionIterable
+from typed_linq_collections.collections.numeric.q_int_types import QIntIterable
+from typed_linq_collections.collections.q_list import QList
 
 
 def test_iterable_of_int_returns_an_int_iterable_with_all_the_values_in_order() -> None:

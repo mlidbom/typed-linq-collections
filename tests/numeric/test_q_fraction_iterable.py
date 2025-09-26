@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from queryablecollections.collections.numeric.q_fraction_types import QFractionList
-from queryablecollections.q_errors import EmptyIterableError
+from typed_linq_collections.collections.numeric.q_fraction_types import QFractionList
+from typed_linq_collections.q_errors import EmptyIterableError
 from test_common_helpers import *
 
 

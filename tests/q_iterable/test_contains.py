@@ -1,7 +1,7 @@
 # tests/test_contains.py
 from __future__ import annotations
 
-from queryablecollections.q_iterable import query
+from typed_linq_collections.q_iterable import query
 
 
 def test_true_for_present_value() -> None:

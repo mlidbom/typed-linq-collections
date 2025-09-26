@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from queryablecollections.q_iterable import query
+from typed_linq_collections.q_iterable import query
 
 
 def test_skip_while_skips_elements_until_predicate_becomes_false() -> None:

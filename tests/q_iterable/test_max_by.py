@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import pytest
-from queryablecollections.q_errors import EmptyIterableError
+from typed_linq_collections.q_errors import EmptyIterableError
 from test_common_helpers import lists_value_test, throws_test
 
 

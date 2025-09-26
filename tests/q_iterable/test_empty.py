@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from queryablecollections.collections.q_frozen_set import QFrozenSet
-from queryablecollections.collections.q_immutable_sequence import QImmutableSequence
-from queryablecollections.collections.q_sequence import QSequence
-from queryablecollections.q_iterable import QIterable
+from typed_linq_collections.collections.q_frozen_set import QFrozenSet
+from typed_linq_collections.collections.q_immutable_sequence import QImmutableSequence
+from typed_linq_collections.collections.q_sequence import QSequence
+from typed_linq_collections.q_iterable import QIterable
 
 
 def test_iterable_empty_returns_empty_sequence_the_same_instance_each_time() -> None:

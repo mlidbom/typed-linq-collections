@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import pytest
-from queryablecollections.q_iterable import QIterable
+from typed_linq_collections.q_iterable import QIterable
 
 
 def test_single_argument_creates_range_from_0_to_end_minus_one() -> None:

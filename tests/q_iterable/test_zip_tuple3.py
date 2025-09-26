@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from queryablecollections.collections.q_list import QList
-from queryablecollections.q_iterable import query
+from typed_linq_collections.collections.q_list import QList
+from typed_linq_collections.q_iterable import query
 
 
 def test_zip_tuple3_with_equal_length_sequences_returns_each_combination() -> None:
