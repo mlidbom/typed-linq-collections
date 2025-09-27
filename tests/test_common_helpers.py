@@ -5,6 +5,7 @@ from contextlib import contextmanager
 from typing import cast
 
 import pytest
+
 from typed_linq_collections.collections.q_frozen_set import QFrozenSet
 from typed_linq_collections.collections.q_immutable_sequence import QImmutableSequence
 from typed_linq_collections.collections.q_list import QList

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from typed_linq_collections.q_errors import EmptyIterableError
 from test_common_helpers import throws_test, value_test_including_unordered_collections
+
+from typed_linq_collections.q_errors import EmptyIterableError
 
 
 def test_returns_last_value() -> None:

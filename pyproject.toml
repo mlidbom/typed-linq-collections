@@ -32,7 +32,7 @@ Issues = "https://github.com/mlidbom/typed_linq_collections/issues"
 
 [tool.ruff]
 extend-exclude = []
-line-length = 9999
+line-length = 320
 
 [tool.ruff.lint]
 

@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from typed_linq_collections.q_errors import ArgumentError
 from test_common_helpers import throws_test, value_test_including_unordered_collections
+
+from typed_linq_collections.q_errors import ArgumentError
 
 
 def test_divides_evenly_into_chunks_of_the_given_size_preserving_order() -> None:

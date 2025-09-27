@@ -3,9 +3,10 @@ from __future__ import annotations
 from decimal import Decimal
 
 import pytest
+from test_common_helpers import throws_test, value_test_including_unordered_collections
+
 from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalList
 from typed_linq_collections.q_errors import EmptyIterableError
-from test_common_helpers import throws_test, value_test_including_unordered_collections
 
 
 def test_typing() -> None:

@@ -1,8 +1,9 @@
 from __future__ import annotations
 
+from test_common_helpers import lists_value_test, throws_test
+
 from typed_linq_collections.collections.q_list import QList
 from typed_linq_collections.q_errors import EmptyIterableError
-from test_common_helpers import lists_value_test, throws_test
 
 
 def test_summing_numbers_returns_sum_of_the_elements() -> None:

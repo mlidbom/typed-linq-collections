@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pytest
+
 from typed_linq_collections.q_iterable import QIterable
 
 

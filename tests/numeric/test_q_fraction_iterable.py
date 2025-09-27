@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from fractions import Fraction
 
+from test_common_helpers import *
+
 from typed_linq_collections.collections.numeric.q_fraction_types import QFractionList
 from typed_linq_collections.q_errors import EmptyIterableError
-from test_common_helpers import *
 
 
 def test_cast_fraction_returns_an_q_iterable_fraction_with_the_same_elements() -> None:

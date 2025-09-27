@@ -1,9 +1,10 @@
 from __future__ import annotations
 
+from test_common_helpers import lists_value_test
+
 from typed_linq_collections.collections.q_key_value_pair import KeyValuePair
 from typed_linq_collections.collections.q_list import QList
 from typed_linq_collections.q_iterable import query
-from test_common_helpers import lists_value_test
 
 
 def to_tuple[TKey, TValue](x: KeyValuePair[TKey, TValue]) -> tuple[TKey, TValue]:

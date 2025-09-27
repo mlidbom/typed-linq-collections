@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-from typed_linq_collections.collections.q_list import QList
 from test_common_helpers import value_test_including_unordered_collections
+
+from typed_linq_collections.collections.q_list import QList
 
 
 def test_not_none_returns_only_elements_that_are_not_none() -> None:
