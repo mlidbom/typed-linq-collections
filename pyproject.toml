@@ -31,7 +31,7 @@ Repository = "https://github.com/mlidbom/typed_linq_collections"
 Issues = "https://github.com/mlidbom/typed_linq_collections/issues"
 
 [tool.ruff]
-extend-exclude = []
+extend-exclude = ["_lib", "_lib_patched", "manually_copied_in_libraries"]
 line-length = 320
 
 [tool.ruff.lint]

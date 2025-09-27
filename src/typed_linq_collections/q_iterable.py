@@ -9,6 +9,7 @@ from typed_linq_collections._private_implementation_details import ops
 
 # noinspection PyPep8Naming,PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_zero_overhead_collection_contructors import ZeroImportOverheadConstructors as C
+
 # noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.sort_instruction import SortInstruction
 from typed_linq_collections.q_errors import EmptyIterableError
