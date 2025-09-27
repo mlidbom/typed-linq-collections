@@ -2,3 +2,4 @@
 /repomix/*.xml
 /src/typed_linq_collections.egg-info/*
 /dist/*
+/.coverage
