@@ -16,7 +16,6 @@ from .element_at import element_at
 from .element_at_or_none import element_at_or_none
 from .first import first
 from .first_or_none import first_or_none
-from .flatten import flatten
 from .for_each import for_each
 from .group_by_q import group_by_q
 from .group_join import group_join
