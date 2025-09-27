@@ -48,8 +48,10 @@ class QFloatIterable(QIterable[float], ABC):
     @override
     def _order_by(self, key_selector: Selector[float, SupportsRichComparison], descending: bool) -> QOrderedIterable[float]:
         return QFloatOrderedIterable(lambda: self, [SortInstruction(key_selector, descending)])
-    def _selfcast(self, iterable: QIterable[float]) -> QFloatIterable: return cast(QFloatIterable, iterable)
-    def _selfcast_ordered(self, iterable: QOrderedIterable[float]) -> QFloatOrderedIterable: return cast(QFloatOrderedIterable, iterable)
+    @staticmethod
+    def _selfcast(iterable: QIterable[float]) -> QFloatIterable: return cast(QFloatIterable, iterable)
+    @staticmethod
+    def _selfcast_ordered(iterable: QOrderedIterable[float]) -> QFloatOrderedIterable: return cast(QFloatOrderedIterable, iterable)
 
     # region override methods so that typecheckers know that we actually return QFloatIterables now, not QIterable[float]
     # call the base method to eliminate code duplication. The base class will call lazy from just above, so it is already the correct type

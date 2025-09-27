@@ -74,8 +74,6 @@ __all__ = [
         "element_at_or_none",
         "first",
         "first_or_none",
-        "flatten",
-        "for_each",
         "group_by_q",
         "group_join",
         "join",

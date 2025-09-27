@@ -49,8 +49,10 @@ class QFractionIterable(QIterable[Fraction], ABC):
     @override
     def _order_by(self, key_selector: Selector[Fraction, SupportsRichComparison], descending: bool) -> QOrderedIterable[Fraction]:
         return QFractionOrderedIterable(lambda: self, [SortInstruction(key_selector, descending)])
-    def _selfcast(self, iterable: QIterable[Fraction]) -> QFractionIterable: return cast(QFractionIterable, iterable)
-    def _selfcast_ordered(self, iterable: QOrderedIterable[Fraction]) -> QFractionOrderedIterable: return cast(QFractionOrderedIterable, iterable)
+    @staticmethod
+    def _selfcast(iterable: QIterable[Fraction]) -> QFractionIterable: return cast(QFractionIterable, iterable)
+    @staticmethod
+    def _selfcast_ordered(iterable: QOrderedIterable[Fraction]) -> QFractionOrderedIterable: return cast(QFractionOrderedIterable, iterable)
 
     # region override methods so that typecheckers know that we actually return QFractionIterables now, not QIterable[Fraction]
     # call the base method to eliminate code duplication. The base class will call lazy from just above, so it is already the correct type

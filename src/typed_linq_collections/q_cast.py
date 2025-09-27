@@ -5,6 +5,7 @@ from decimal import Decimal
 from fractions import Fraction
 from typing import TYPE_CHECKING, cast
 
+# noinspection PyPep8Naming
 from typed_linq_collections._private_implementation_details.q_zero_overhead_collection_contructors import ZeroImportOverheadConstructors as C
 from typed_linq_collections.q_iterable import QIterable
 
@@ -16,8 +17,8 @@ if TYPE_CHECKING:
 
 class CheckedCast[TValue]:
     __slots__: tuple[str, ...] = ("_type",)
-    def __init__(self, type: type[TValue]) -> None:
-        self._type: type[TValue] = type
+    def __init__(self, cast_to_type: type[TValue]) -> None:
+        self._type: type[TValue] = cast_to_type
 
     def __call__(self, value: object) -> TValue:
         if not isinstance(value, self._type): raise TypeError(f"Expected {self._type.__name__}, got {type(value).__name__}")

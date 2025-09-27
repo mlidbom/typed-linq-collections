@@ -48,8 +48,10 @@ class QIntIterable(QIterable[int], ABC):
     @override
     def _order_by(self, key_selector: Selector[int, SupportsRichComparison], descending: bool) -> QOrderedIterable[int]:
         return QIntOrderedIterable(lambda: self, [SortInstruction(key_selector, descending)])
-    def _selfcast(self, iterable: QIterable[int]) -> QIntIterable: return cast(QIntIterable, iterable)
-    def _selfcast_ordered(self, iterable: QOrderedIterable[int]) -> QIntOrderedIterable: return cast(QIntOrderedIterable, iterable)
+    @staticmethod
+    def _selfcast(iterable: QIterable[int]) -> QIntIterable: return cast(QIntIterable, iterable)
+    @staticmethod
+    def _selfcast_ordered(iterable: QOrderedIterable[int]) -> QIntOrderedIterable: return cast(QIntOrderedIterable, iterable)
 
     # region override methods so that typecheckers know that we actually return QIntIterables now, not QIterable[int]
     # call the base method to eliminate code duplication. The base class will call lazy from just above, so it is already the correct type

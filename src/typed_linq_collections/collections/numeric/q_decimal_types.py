@@ -49,8 +49,10 @@ class QDecimalIterable(QIterable[Decimal], ABC):
     @override
     def _order_by(self, key_selector: Selector[Decimal, SupportsRichComparison], descending: bool) -> QOrderedIterable[Decimal]:
         return QDecimalOrderedIterable(lambda: self, [SortInstruction(key_selector, descending)])
-    def _selfcast(self, iterable: QIterable[Decimal]) -> QDecimalIterable: return cast(QDecimalIterable, iterable)
-    def _selfcast_ordered(self, iterable: QOrderedIterable[Decimal]) -> QDecimalOrderedIterable: return cast(QDecimalOrderedIterable, iterable)
+    @staticmethod
+    def _selfcast(iterable: QIterable[Decimal]) -> QDecimalIterable: return cast(QDecimalIterable, iterable)
+    @staticmethod
+    def _selfcast_ordered(iterable: QOrderedIterable[Decimal]) -> QDecimalOrderedIterable: return cast(QDecimalOrderedIterable, iterable)
 
     # region override methods so that typecheckers know that we actually return QDecimalIterables now, not QIterable[Decimal]
     # call the base method to eliminate code duplication. The base class will call lazy from just above, so it is already the correct type
