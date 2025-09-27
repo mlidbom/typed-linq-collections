@@ -1,15 +1,11 @@
 # Typed LINQ Collections
 
-A Python LINQ library with full type annotations, lazy evaluation and collection types that are drop-in replacements for standard Python collections.
-
-## Overview
-
-**Typed LINQ Collections** brings the power of Language Integrated Query (LINQ) to Python with complete type safety and modern Python features. This library provides queryable collection types that extend Python's standard collections while maintaining full compatibility and adding powerful query capabilities.
+Linq for Python with full type annotions. Query any built in Iterable or use one of the queryable collections that are drop in replacements for standard collections.
 
 ## Features
 - **Rich Query API**: Almost the full Enumerable set of operators form .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
 - **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
-- **Lazy Evaluation**: Efficient query execution with deferred evaluation
+- **Lazy Evaluation**: Memory efficient query execution with deferred evaluation for every operation other than the to_* methods which create new collections 
 - **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
 - **Numeric Specializations**: Dedicated types for `int`, `float`, `Decimal`, and `Fraction` collections
 - **Extensible Design**: QIterable is an abstract class/mixin that can be subclassed by any Iterable type to add full querying capabilities
