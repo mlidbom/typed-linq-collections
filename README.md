@@ -4,7 +4,7 @@ Linq for Python with full type annotions.
 Query any built in Iterable or use one of the queryable collections that are drop in replacements for standard collections.
 Name collisions with the standard library are resolved by prefixing the built in with q. qcount etc.
 
-- **Rich Query API**: Almost the full Enumerable set of operators form .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
+- **Rich Query API**: Almost the full Enumerable set of operators from .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
 - **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
 - **Lazy Evaluation**: Memory efficient query execution with deferred evaluation for every operation other than the to_* methods which create new collections 
 - **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
