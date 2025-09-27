@@ -7,7 +7,7 @@ where = ["src"]
 
 [project]
 name = "typed-linq-collections"
-version = "0.0.6"
+version = "0.0.7"
 description = "Linq for Python with full type annotions. Query any built in Iterable or use one of the queryable collections that are drop in replacements for standard collections."
 readme = "README.md"
 authors = [
