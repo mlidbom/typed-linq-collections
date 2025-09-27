@@ -1,8 +1,7 @@
-# Typed LINQ Collections
+# Typed Linq Collections
 
 Linq for Python with full type annotions. Query any built in Iterable or use one of the queryable collections that are drop in replacements for standard collections.
 
-## Features
 - **Rich Query API**: Almost the full Enumerable set of operators form .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
 - **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
 - **Lazy Evaluation**: Memory efficient query execution with deferred evaluation for every operation other than the to_* methods which create new collections 
@@ -40,7 +39,7 @@ def test_numeric_operations() -> None:
                               .as_ints() # get's you a QIntIterable with numeric operations support. typed so that it is only available on a QIterable[int]
                               .sum())
 
-    assert total_lenght_of_fruits == 36~~~~~~~~
+    assert total_lenght_of_fruits == 36
 ```
 
 ## Collection Types
