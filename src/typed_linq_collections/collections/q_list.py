@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 from typing import TYPE_CHECKING, SupportsIndex, overload, override
 
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_lazy_iterable import QLazyIterableImplementation
 from typed_linq_collections.collections.q_sequence import QSequence
 from typed_linq_collections.q_iterable import QIterable

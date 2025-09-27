@@ -4,10 +4,12 @@ from abc import ABC
 from collections.abc import Callable, Iterable
 from typing import TYPE_CHECKING, Never, Self, overload
 
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details import ops
 
-# noinspection PyPep8Naming
+# noinspection PyPep8Naming,PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_zero_overhead_collection_contructors import ZeroImportOverheadConstructors as C
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.sort_instruction import SortInstruction
 from typed_linq_collections.q_errors import EmptyIterableError
 
@@ -17,6 +19,7 @@ if TYPE_CHECKING:
 
     from _typeshed import SupportsRichComparison
 
+    # noinspection PyProtectedMember
     from typed_linq_collections._private_implementation_details.type_aliases import Action1, Func, Predicate, Selector
     from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalIterable
     from typed_linq_collections.collections.numeric.q_float_types import QFloatIterable

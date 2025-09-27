@@ -5,7 +5,7 @@ from decimal import Decimal
 from fractions import Fraction
 from typing import TYPE_CHECKING, cast
 
-# noinspection PyPep8Naming
+# noinspection PyPep8Naming,PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_zero_overhead_collection_contructors import ZeroImportOverheadConstructors as C
 from typed_linq_collections.q_iterable import QIterable
 

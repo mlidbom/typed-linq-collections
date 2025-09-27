@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, overload, override
 
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.immutable_sequence import ImmutableSequence
 from typed_linq_collections.collections.q_sequence import QSequence
 

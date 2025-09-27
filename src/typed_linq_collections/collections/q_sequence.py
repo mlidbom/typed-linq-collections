@@ -4,6 +4,7 @@ from abc import ABC
 from collections.abc import Sequence
 from typing import Never, override
 
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_lazy_iterable import QLazyIterableImplementation
 from typed_linq_collections.q_iterable import QIterable
 

@@ -4,7 +4,9 @@ import statistics
 from abc import ABC
 from typing import TYPE_CHECKING, cast, override
 
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.q_lazy_iterable import QLazyIterableImplementation
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.sort_instruction import SortInstruction
 from typed_linq_collections.collections.q_frozen_set import QFrozenSet
 from typed_linq_collections.collections.q_immutable_sequence import QImmutableSequence
@@ -19,6 +21,7 @@ if TYPE_CHECKING:
 
     from _typeshed import SupportsRichComparison
 
+    # noinspection PyProtectedMember
     from typed_linq_collections._private_implementation_details.type_aliases import Func, Predicate, Selector
 
 class QFloatIterable(QIterable[float], ABC):

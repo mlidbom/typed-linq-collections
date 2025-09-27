@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, override
 
+# noinspection PyProtectedMember
 import typed_linq_collections._private_implementation_details.ops as ops
+# noinspection PyProtectedMember
 from typed_linq_collections._private_implementation_details.sort_instruction import SortInstruction
 from typed_linq_collections.q_iterable import QIterable
 
@@ -11,6 +13,7 @@ if TYPE_CHECKING:
 
     from _typeshed import SupportsRichComparison
 
+    # noinspection PyProtectedMember
     from typed_linq_collections._private_implementation_details.type_aliases import Func, Selector
 
 
