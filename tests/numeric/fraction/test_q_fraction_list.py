@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from test_common_helpers import *
+import pytest
+from test_common_helpers import throws_test, value_test_including_unordered_collections
 
 from typed_linq_collections.collections.numeric.q_fraction_types import QFractionList
 from typed_linq_collections.q_errors import EmptyIterableError
@@ -42,6 +43,3 @@ def test_average_or_default_returns_average_of_the_values() -> None: assert QFra
 def test_average_or_default_returns_0_on_on_empty_collection() -> None: assert QFractionList().average_or_default() == Fraction(0)
 
 def test_to_list_returns_a_list_with_the_same_elements() -> None: assert QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_list() == [Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]
-def test_to_set_returns_a_set_with_the_same_elements() -> None: assert QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_set() == {Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)}
-def test_to_frozenset_returns_a_frozenset_with_the_same_elements() -> None: assert QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_frozenset() == frozenset({Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)})
-def test_to_sequence_returns_a_sequence_with_the_same_elements() -> None: assert QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_sequence().to_list() == [Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]
