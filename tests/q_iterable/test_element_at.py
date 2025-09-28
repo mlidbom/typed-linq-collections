@@ -8,10 +8,10 @@ def test_0_returns_element_1() -> None:
                                                lambda x: x.element_at(0),
                                                1)
 
-def test_1_return_element_2() -> None: value_test_including_unordered_collections(
-        [1, 2, 3],
-        lambda x: x.element_at(1),
-        2)
+def test_1_return_element_2() -> None:
+    value_test_including_unordered_collections([1, 2, 3],
+                                               lambda x: x.element_at(1),
+                                               2)
 
 def test_2_returns_element_3() -> None:
     value_test_including_unordered_collections([1, 2, 3],
