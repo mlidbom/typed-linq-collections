@@ -87,3 +87,7 @@ class CallCounter:
 def test_throws_test_fails_when_no_exception_is_raised() -> None:
     with pytest.raises(AssertionError):
         throws_test([1, 2, 3], lambda x: x.to_list(), exception=ValueError)
+
+def test_sane_asserting_re_raises_assertion_error() -> None:
+    with pytest.raises(AssertionError), sane_asserting():
+        assert False, "This is a test failure"  # noqa: B011, PT015
