@@ -7,16 +7,14 @@ def test_excludes_elements_whose_keys_are_present_in_other_without_changing_orde
     data = [(1, "a"), (2, "b"), (3, "c"), (4, "d"), (5, "e")]
     lists_value_test(data,
                      lambda x: x.where_key_not_in([3, 4, 6, 7], lambda item: item[0]).to_list(),
-                     [(1, "a"), (2, "b"), (5, "e")],
-                     )
+                     [(1, "a"), (2, "b"), (5, "e")])
 
 def test_removes_duplicates_by_key_from_result_keeping_the_first_encountered() -> None:
     data = [("apple", 1), ("apricot", 2), ("banana", 3), ("avocado", 4)]
     # key is the first character
     lists_value_test(data,
                      lambda x: x.where_key_not_in(["b"], lambda item: item[0][0]).to_list(),
-                     [("apple", 1)],  # only the first 'a*' remains, 'banana' excluded, 'avocado' removed as duplicate key 'a'
-                     )
+                     [("apple", 1)])  # only the first 'a*' remains, 'banana' excluded, 'avocado' removed as duplicate key 'a'
 
 def test_with_empty_other_returns_distinct_by_key_of_first() -> None:
     data = [(1, "x"), (2, "y"), (2, "z"), (3, "w")]
