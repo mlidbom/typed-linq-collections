@@ -5,7 +5,9 @@ from test_common_helpers import value_test_including_unordered_collections
 
 def test_order_by_sorts_in_ascending_order() -> None:
     value_test_including_unordered_collections([3, 2, 1],
-                                               lambda input: input.order_by(lambda y: y).to_list(),
+                                               lambda input: input
+                                               .order_by(lambda y: y)
+                                               .to_list(),
                                                [1, 2, 3])
 
 def test_order_by_descending_sorts_in_descending_order() -> None:
