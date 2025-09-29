@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from typed_linq_collections.collections.numeric.q_int_types import QIntIterable, QIntIterableImplementation
+from typed_linq_collections.collections.numeric.q_int_types import QIntFrozenSet, QIntIterable, QIntIterableImplementation, QIntList, QIntSequence, QIntSet
 from typed_linq_collections.q_errors import EmptyIterableError
 from typed_linq_collections.q_iterable import query
 
@@ -121,22 +121,22 @@ def test_order_by_descending_returns_qint_ordered_iterable() -> None:
 
 def test_to_list_returns_qint_list() -> None:
     result = query([1, 2, 3]).as_ints().to_list()
-    assert result.__class__.__name__ == "QIntList"
+    assert isinstance(result, QIntList)
     assert list(result) == [1, 2, 3]
 
 def test_to_sequence_returns_qint_sequence() -> None:
     result = query([1, 2, 3]).as_ints().to_sequence()
-    assert result.__class__.__name__ == "QIntSequence"
+    assert isinstance(result, QIntSequence)
     assert list(result) == [1, 2, 3]
 
 def test_to_set_returns_qint_set() -> None:
     result = query([1, 2, 3]).as_ints().to_set()
-    assert result.__class__.__name__ == "QIntSet"
+    assert isinstance(result, QIntSet)
     assert set(result) == {1, 2, 3}
 
 def test_to_frozenset_returns_qint_frozenset() -> None:
     result = query([1, 2, 3]).as_ints().to_frozenset()
-    assert result.__class__.__name__ == "QIntFrozenSet"
+    assert isinstance(result, QIntFrozenSet)
     assert set(result) == {1, 2, 3}
 
 def test_qint_iterable_implementation_constructor() -> None:

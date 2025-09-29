@@ -76,3 +76,10 @@ def test_constructor_with_no_arguments_creates_empty_collection() -> None:
     empty_list = QDecimalList()
     assert len(empty_list) == 0
     assert list(empty_list) == []
+
+def test_reversed_returns_qdecimal_iterable() -> None:
+    result = QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).reversed()
+    # The reversed method returns QDecimalIterable (not QDecimalList specifically)
+    from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalIterable
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal("3.1"), Decimal("2.1"), Decimal("1.1")]

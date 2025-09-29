@@ -4,7 +4,7 @@ from decimal import Decimal
 
 import pytest
 
-from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalIterable, QDecimalIterableImplementation
+from typed_linq_collections.collections.numeric.q_decimal_types import QDecimalFrozenSet, QDecimalIterable, QDecimalIterableImplementation, QDecimalList, QDecimalSequence, QDecimalSet
 from typed_linq_collections.q_errors import EmptyIterableError
 from typed_linq_collections.q_iterable import query
 
@@ -58,6 +58,78 @@ def test_where_returns_qdecimal_iterable() -> None:
     result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().where(lambda x: x > Decimal(2))
     assert isinstance(result, QDecimalIterable)
     assert list(result) == [Decimal(3), Decimal(4)]
+
+def test_where_not_none_returns_qdecimal_iterable() -> None:
+    # Create a mixed-type collection first, then convert to decimals, then call where_not_none
+    # This tests the where_not_none override method on QDecimalIterable
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().where_not_none()
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(1), Decimal(2), Decimal(3)]
+
+def test_distinct_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(2), Decimal(3)]).as_decimals().distinct()
+    assert isinstance(result, QDecimalIterable)
+    assert set(result) == {Decimal(1), Decimal(2), Decimal(3)}
+
+def test_distinct_by_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(-2), Decimal(3), Decimal(-4)]).as_decimals().distinct_by(abs)
+    assert isinstance(result, QDecimalIterable)
+    assert len(list(result)) == 4  # All are distinct by absolute value
+
+def test_take_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().take(2)
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(1), Decimal(2)]
+
+def test_take_while_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().take_while(lambda x: x < Decimal(3))
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(1), Decimal(2)]
+
+def test_take_last_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().take_last(2)
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(3), Decimal(4)]
+
+def test_skip_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().skip(2)
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(3), Decimal(4)]
+
+def test_skip_last_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3), Decimal(4)]).as_decimals().skip_last(2)
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(1), Decimal(2)]
+
+def test_reversed_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().reversed()
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(3), Decimal(2), Decimal(1)]
+
+def test_concat_returns_qdecimal_iterable() -> None:
+    result = query([Decimal(1), Decimal(2)]).as_decimals().concat([Decimal(3), Decimal(4)])
+    assert isinstance(result, QDecimalIterable)
+    assert list(result) == [Decimal(1), Decimal(2), Decimal(3), Decimal(4)]
+
+def test_to_list_returns_qdecimal_list() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().to_list()
+    assert isinstance(result, QDecimalList)
+    assert list(result) == [Decimal(1), Decimal(2), Decimal(3)]
+
+def test_to_sequence_returns_qdecimal_sequence() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().to_sequence()
+    assert isinstance(result, QDecimalSequence)
+    assert list(result) == [Decimal(1), Decimal(2), Decimal(3)]
+
+def test_to_set_returns_qdecimal_set() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().to_set()
+    assert isinstance(result, QDecimalSet)
+    assert set(result) == {Decimal(1), Decimal(2), Decimal(3)}
+
+def test_to_frozenset_returns_qdecimal_frozenset() -> None:
+    result = query([Decimal(1), Decimal(2), Decimal(3)]).as_decimals().to_frozenset()
+    assert isinstance(result, QDecimalFrozenSet)
+    assert set(result) == {Decimal(1), Decimal(2), Decimal(3)}
 
 def test_qdecimal_iterable_implementation_constructor() -> None:
     impl = QDecimalIterableImplementation(lambda: (Decimal(1), Decimal(2), Decimal(3)))

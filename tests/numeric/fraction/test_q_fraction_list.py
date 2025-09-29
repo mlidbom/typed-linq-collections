@@ -73,3 +73,10 @@ def test_constructor_with_no_arguments_creates_empty_collection() -> None:
     empty_list = QFractionList()
     assert len(empty_list) == 0
     assert list(empty_list) == []
+
+def test_reversed_returns_qfraction_iterable() -> None:
+    result = QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).reversed()
+    # The reversed method returns QFractionIterable (not QFractionList specifically)
+    from typed_linq_collections.collections.numeric.q_fraction_types import QFractionIterable
+    assert isinstance(result, QFractionIterable)
+    assert list(result) == [Fraction(31, 10), Fraction(21, 10), Fraction(11, 10)]

@@ -71,3 +71,10 @@ def test_constructor_with_no_arguments_creates_empty_collection() -> None:
     empty_list = QFloatList()
     assert len(empty_list) == 0
     assert list(empty_list) == []
+
+def test_reversed_returns_qfloat_iterable() -> None:
+    result = QFloatList([1.1, 2.1, 3.1]).reversed()
+    # The reversed method returns QFloatIterable (not QFloatList specifically)
+    from typed_linq_collections.collections.numeric.q_float_types import QFloatIterable
+    assert isinstance(result, QFloatIterable)
+    assert list(result) == [3.1, 2.1, 1.1]
