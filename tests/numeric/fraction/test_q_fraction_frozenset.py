@@ -20,7 +20,9 @@ def test_cast_checked_fraction_returns_a_q_iterable_fraction_with_the_same_eleme
                                                frozenset({Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)}))
 
 def test_cast_checked_fraction_raises_type_error_if_collection_contains_non_fraction() -> None:
-    throws_test([Fraction(11, 10), "2.1", Fraction(31, 10)], lambda x: x.cast.checked.fraction().to_frozenset(), TypeError)
+    throws_test([Fraction(11, 10), "2.1", Fraction(31, 10)],
+                lambda x: x.cast.checked.fraction().to_frozenset(),
+                TypeError)
 
 def test_sum_returns_sum_of_the_values() -> None: assert QFractionFrozenSet([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).sum() == Fraction(63, 10)
 def test_sum_returns_zero_on_on_empty_collection() -> None: assert QFractionFrozenSet().sum() == Fraction(0)

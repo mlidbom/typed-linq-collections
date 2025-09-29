@@ -15,7 +15,8 @@ def test_returns_single_none_value() -> None:
 
 
 def test_throws_if_no_values() -> None:
-    throws_test([], lambda x: x.first())
+    throws_test([],
+                lambda x: x.first())
 
 def test_with_predicate_returns_first_matching_value() -> None:
     value_test_including_unordered_collections([1, 2, 3, 4],

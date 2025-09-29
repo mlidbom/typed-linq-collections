@@ -18,7 +18,9 @@ def test_cast_checked_int_returns_a_q_iterable_int_with_the_same_elements() -> N
                                                frozenset({1, 2, 3}))
 
 def test_cast_checked_int_raises_type_error_if_collection_contains_non_int() -> None:
-    throws_test([1, "2", 3], lambda x: x.cast.checked.int().to_frozenset(), TypeError)
+    throws_test([1, "2", 3],
+                lambda x: x.cast.checked.int().to_frozenset(),
+                TypeError)
 
 def test_sum_returns_sum_of_the_values() -> None: assert QIntFrozenSet([1, 2, 3]).sum() == 6
 def test_sum_returns_zero_on_on_empty_collection() -> None: assert QIntFrozenSet().sum() == 0

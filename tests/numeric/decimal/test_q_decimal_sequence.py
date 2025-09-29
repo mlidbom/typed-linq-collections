@@ -20,7 +20,9 @@ def test_cast_checked_decimal_returns_a_q_iterable_decimal_with_the_same_element
                                                [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")])
 
 def test_cast_checked_decimal_raises_type_error_if_collection_contains_non_decimal() -> None:
-    throws_test([Decimal("1.1"), "2.1", Decimal("3.1")], lambda x: x.cast.checked.decimal().to_sequence(), TypeError)
+    throws_test([Decimal("1.1"), "2.1", Decimal("3.1")],
+                lambda x: x.cast.checked.decimal().to_sequence(),
+                TypeError)
 
 def test_sum_returns_sum_of_the_values() -> None: assert QDecimalSequence([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).sum() == Decimal("6.3")
 def test_sum_returns_zero_on_on_empty_collection() -> None: assert QDecimalSequence().sum() == Decimal(0)
