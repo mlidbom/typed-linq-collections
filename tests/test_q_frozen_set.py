@@ -19,3 +19,11 @@ def test_q_frozen_set_empty_static_method() -> None:
     empty_set = QFrozenSet.empty()
     assert len(empty_set) == 0
     assert empty_set.to_list() == []
+
+
+def test_q_frozen_set_qcount() -> None:
+    test_set = QFrozenSet([1, 2, 3])
+    assert test_set.qcount() == 3
+
+    empty_set = QFrozenSet()
+    assert empty_set.qcount() == 0

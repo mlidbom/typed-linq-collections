@@ -19,3 +19,11 @@ def test_q_set_contains() -> None:
     test_set = QSet([1, 2, 3])
     assert test_set.contains(2)
     assert not test_set.contains(4)
+
+
+def test_q_set_qcount() -> None:
+    test_set = QSet([1, 2, 3])
+    assert test_set.qcount() == 3
+
+    empty_set = QSet()
+    assert empty_set.qcount() == 0
