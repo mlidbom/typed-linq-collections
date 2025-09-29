@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import override
-
 from typed_linq_collections.collections.q_list import QList
 from typed_linq_collections.q_iterable import query
 
@@ -10,10 +8,6 @@ class DummyObj:
     def __init__(self, name: str, val: int) -> None:
         self.name: str = name
         self.val: int = val
-
-    @override
-    def __eq__(self, other: object) -> bool:
-        return isinstance(other, DummyObj) and self.name == other.name and self.val == other.val
 
 def test_to_dict_with_selectors_returns_a_dict_combining_the_selected_keys_and_values() -> None:
     assert (query([DummyObj("x", 10),

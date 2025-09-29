@@ -29,9 +29,9 @@ def create_sequences[T](iterable: Iterable[T] | Callable[[], Iterable[T]], skip_
                                           else lambda: cast(Iterable[T], iterable))  # pyright: ignore[reportUnnecessaryCast] while basedpyright understands it is not needed, pyright does not
 
     values = [
-            ("query", query(factory())),
-            ("QList", QList(factory())),
-            ("QImmutableSequence", QImmutableSequence(list(factory()))),
+        ("query", query(factory())),
+        ("QList", QList(factory())),
+        ("QImmutableSequence", QImmutableSequence(list(factory()))),
     ]
     if not skip_sets:
         values += [("QSet", QSet(factory())),
@@ -75,7 +75,7 @@ def throws_test[TIn, TOut](input: Iterable[TIn],
     for name, sequence in create_sequences(input, skip_sets):
         with pytest.raises(exception):  # noqa: PT012
             operation(sequence)
-            pytest.fail(f"{name}: Expected {exception} to be raised")
+            raise AssertionError(f"{name}: Expected {exception} to be raised")
 
 class CallCounter:
     def __init__(self) -> None:
@@ -83,3 +83,7 @@ class CallCounter:
 
     def increment(self) -> None:
         self.call_count += 1
+
+def test_throws_test_fails_when_no_exception_is_raised() -> None:
+    with pytest.raises(AssertionError):
+        throws_test([1, 2, 3], lambda x: x.to_list(), exception=ValueError)
