@@ -10,6 +10,7 @@ Name collisions with the standard library are resolved by prefixing the built in
 - **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
 - **Numeric Specializations**: Dedicated types for `int`, `float`, `Decimal`, and `Fraction` collections
 - **Extensible Design**: QIterable is an abstract class/mixin that can be subclassed by any Iterable type to add full querying capabilities
+- **Comprehensive test suite**: More than 900 tests covering every single line and code branch
 
 ## Quick Start
 
