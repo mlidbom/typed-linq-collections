@@ -27,3 +27,9 @@ def test_neq_with_list_different_lengths() -> None:
 def test_neq_with_list_different_elements() -> None:
     assert QImmutableSequence([1, 2, 3]) != [1, 2, 4]
     assert QImmutableSequence([1, 2, 3]) != [4, 5, 6]
+
+
+def test_neq_if_other_is_not_sequence() -> None:
+    assert QImmutableSequence([1, 2, 3]) != "not a sequence"
+    assert QImmutableSequence([1, 2, 3]) != 123
+    assert QImmutableSequence([1, 2, 3]) != None  # noqa: E711
