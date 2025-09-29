@@ -17,7 +17,6 @@ def test_max_by_raises_on_empty() -> None:
                          lambda x: x.max_by(len),
                          None)  # value ignored due to exception
 
-
 def test_max_by_with_ties_returns_first_encountered() -> None:
     lists_value_test(["aa", "bbb", "cc", "ddd", "e"],
                      lambda x: x.max_by(len),

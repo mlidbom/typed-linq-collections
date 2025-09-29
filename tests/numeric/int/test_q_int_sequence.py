@@ -30,6 +30,7 @@ def test_sum_returns_zero_on_on_empty_collection() -> None:
 
 def test_min_returns_min_of_the_values() -> None:
     assert QIntSequence([6, 2, 5, 3]).min() == 2
+
 def test_min_raises_invalid_operation_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QIntSequence().min()
 
@@ -41,6 +42,7 @@ def test_min_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_max_returns_max_of_the_values() -> None:
     assert QIntSequence([1, 5, 3]).max() == 5
+
 def test_max_raises_invalid_operation_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QIntSequence().max()
 
@@ -52,6 +54,7 @@ def test_max_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_average_returns_average_of_the_values() -> None:
     assert QIntSequence([1, 2, 3]).average() == 2
+
 def test_average_throws_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QIntSequence().average()
 

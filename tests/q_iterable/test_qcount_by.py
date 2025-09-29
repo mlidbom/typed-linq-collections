@@ -10,7 +10,6 @@ from typed_linq_collections.q_iterable import query
 def to_tuple[TKey, TValue](x: KeyValuePair[TKey, TValue]) -> tuple[TKey, TValue]:
     return x.key, x.value
 
-
 def test_count_by_returns_count_of_each_key() -> None:
     lists_value_test([1, 2, 2, 3, 3, 3],
                      lambda x: x.qcount_by(lambda y: y).select(to_tuple).to_list(),

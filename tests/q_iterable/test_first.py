@@ -13,7 +13,6 @@ def test_returns_single_none_value() -> None:
                                                lambda x: x.first(),
                                                None)
 
-
 def test_throws_if_no_values() -> None:
     throws_test([],
                 lambda x: x.first())

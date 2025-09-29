@@ -18,6 +18,7 @@ class Order:
     amount: float
 
 class TestJoin:
+
     def test_join_with_matching_keys_returns_combined_results(self) -> None:
         people = [Person(1, "Alice"), Person(2, "Bob")]
         orders = [Order(101, 1, 100.0), Order(102, 2, 200.0), Order(103, 1, 150.0)]

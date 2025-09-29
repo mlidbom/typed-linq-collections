@@ -32,6 +32,7 @@ def test_sum_returns_zero_on_on_empty_collection() -> None:
 
 def test_min_returns_min_of_the_values() -> None:
     assert QFractionFrozenSet([Fraction(61, 10), Fraction(21, 10), Fraction(51, 10), Fraction(31, 10)]).min() == Fraction(21, 10)
+
 def test_min_raises_invalid_operation_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QFractionFrozenSet().min()
 
@@ -43,6 +44,7 @@ def test_min_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_max_returns_max_of_the_values() -> None:
     assert QFractionFrozenSet([Fraction(11, 10), Fraction(51, 10), Fraction(31, 10)]).max() == Fraction(51, 10)
+
 def test_max_raises_invalid_operation_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QFractionFrozenSet().max()
 
@@ -54,6 +56,7 @@ def test_max_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_average_returns_average_of_the_values() -> None:
     assert QFractionFrozenSet([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).average() == Fraction(21, 10)
+
 def test_average_throws_on_on_empty_collection() -> None:
     with pytest.raises(EmptyIterableError): QFractionFrozenSet().average()
 

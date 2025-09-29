@@ -4,6 +4,7 @@ from typed_linq_collections.collections.q_list import QList
 from typed_linq_collections.q_iterable import query
 
 fruits = ("apple", "apricot", "mango", "melon", "peach", "pineapple")
+
 def test_querying_built_in_collections() -> None:
     fruits_by_first_character = (query(fruits)
                                  .group_by(lambda fruit: fruit[0])
