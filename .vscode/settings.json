@@ -3,5 +3,31 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    
+    // Python formatting settings - use autopep8 for formatting, ruff for linting
+    "python.formatting.provider": "none",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.formatOnSave": true,  // Re-enable auto-formatting with autopep8
+        "editor.formatOnPaste": true,
+        "editor.formatOnType": false,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit",
+            "source.fixAll.ruff": "explicit"  // Keep Ruff for linting fixes only
+        }
+    },
+    
+    "editor.rulers": [320],  // Match our line-length setting from pyproject.toml
+    "python.analysis.autoImportCompletions": true,
+    
+    "editor.wordWrap": "off", // Prevent automatic line wrapping that could break your compact style
+    "editor.wordWrapColumn": 320,
+    
+    // Ruff extension settings (keep for linting only)
+    "ruff.nativeServer": true,
+    
+    // Additional settings to prevent unwanted formatting
+    "editor.suggest.insertMode": "replace",
+    "editor.acceptSuggestionOnEnter": "smart"
 }

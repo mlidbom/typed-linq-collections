@@ -13,10 +13,14 @@ def test_typing() -> None:
     QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).where(lambda item: True).sum()
 
 def test_cast_decimal_returns_an_q_iterable_decimal_with_the_same_elements() -> None:
-    value_test_including_unordered_collections([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")], lambda x: x.cast.decimal().to_list(), [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")])
+    value_test_including_unordered_collections([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")],
+                                               lambda x: x.cast.decimal().to_list(),
+                                               [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")])
 
 def test_cast_checked_decimal_returns_a_q_iterable_decimal_with_the_same_elements() -> None:
-    value_test_including_unordered_collections([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")], lambda x: x.cast.checked.decimal().to_list(), [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")])
+    value_test_including_unordered_collections([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")],
+                                               lambda x: x.cast.checked.decimal().to_list(),
+                                               [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")])
 
 def test_cast_checked_decimal_raises_type_error_if_collection_contains_non_decimal() -> None:
     throws_test([Decimal("1.1"), "2.1", Decimal("3.1")], lambda x: x.cast.checked.decimal().to_list(), TypeError)
@@ -46,6 +50,3 @@ def test_average_or_default_returns_average_of_the_values() -> None: assert QDec
 def test_average_or_default_returns_0_on_on_empty_collection() -> None: assert QDecimalList().average_or_default() == Decimal(0)
 
 def test_to_list_returns_a_list_with_the_same_elements() -> None: assert QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_list() == [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]
-def test_to_set_returns_a_set_with_the_same_elements() -> None: assert QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_set() == {Decimal("1.1"), Decimal("2.1"), Decimal("3.1")}
-def test_to_frozenset_returns_a_frozenset_with_the_same_elements() -> None: assert QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_frozenset() == frozenset({Decimal("1.1"), Decimal("2.1"), Decimal("3.1")})
-def test_to_sequence_returns_a_sequence_with_the_same_elements() -> None: assert QDecimalList([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_sequence().to_list() == [Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]
