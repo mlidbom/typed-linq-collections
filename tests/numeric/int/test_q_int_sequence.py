@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 from test_common_helpers import throws_test, value_test_including_unordered_collections
 
-from typed_linq_collections.collections.numeric.q_int_types import QIntSequence
+from typed_linq_collections.collections.numeric.q_int_types import QIntIterable, QIntSequence
 from typed_linq_collections.q_errors import EmptyIterableError
 
 
@@ -71,3 +71,8 @@ def test_constructor_with_no_arguments_creates_empty_collection() -> None:
     empty_sequence = QIntSequence()
     assert len(empty_sequence) == 0
     assert list(empty_sequence) == []
+
+def test_reversed_returns_qint_iterable() -> None:
+    result = QIntSequence([1, 2, 3]).reversed()
+    assert isinstance(result, QIntIterable)
+    assert list(result) == [3, 2, 1]

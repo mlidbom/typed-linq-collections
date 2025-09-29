@@ -62,6 +62,11 @@ def test_where_returns_qint_iterable() -> None:
     assert isinstance(result, QIntIterable)
     assert list(result) == [3, 4]
 
+def test_where_not_none_returns_qint_iterable() -> None:
+    result = query([1, 2, 3]).as_ints().where_not_none()
+    assert isinstance(result, QIntIterable)
+    assert list(result) == [1, 2, 3]
+
 def test_distinct_returns_qint_iterable() -> None:
     result = query([1, 2, 2, 3]).as_ints().distinct()
     assert isinstance(result, QIntIterable)

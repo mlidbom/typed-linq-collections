@@ -30,3 +30,11 @@ def test_q_immutable_sequence_element_at() -> None:
     assert test_seq.element_at(0) == 1
     assert test_seq.element_at(1) == 2
     assert test_seq.element_at(2) == 3
+
+
+def test_q_immutable_sequence_repr() -> None:
+    empty_seq = QImmutableSequence()
+    assert repr(empty_seq) == "QImmutableSequence([])"
+
+    test_seq = QImmutableSequence([1, 2, 3])
+    assert repr(test_seq) == "QImmutableSequence([1, 2, 3])"
