@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from typed_linq_collections.collections.q_list import QList
 
 
@@ -30,3 +32,40 @@ def test_q_list_indexing() -> None:
     sliced = test_list[1:4]
     assert isinstance(sliced, QList)
     assert sliced.to_list() == [2, 3, 4]
+
+
+def test_q_list_index_basic() -> None:
+    test_list = QList([1, 2, 3, 2, 4])
+    assert test_list.index(2) == 1  # First occurrence
+
+
+def test_q_list_index_with_start() -> None:
+    test_list = QList([1, 2, 3, 2, 4])
+    assert test_list.index(2, 2) == 3  # Start from index 2
+
+
+def test_q_list_index_with_stop() -> None:
+    test_list = QList([1, 2, 3, 2, 4])
+    assert test_list.index(2, 0, 3) == 1  # Stop at index 3
+
+
+def test_q_list_index_with_start_and_stop() -> None:
+    test_list = QList([1, 2, 3, 2, 4])
+    assert test_list.index(2, 2, 4) == 3  # Start 2, stop 4
+
+
+def test_q_list_index_not_found() -> None:
+    test_list = QList([1, 2, 3])
+    with pytest.raises(ValueError, match="is not in list"):
+        test_list.index(4)
+
+
+def test_q_list_index_empty_list() -> None:
+    test_list = QList[int]([])
+    with pytest.raises(ValueError, match="is not in list"):
+        test_list.index(1)
+
+
+def test_q_list_index_single_element() -> None:
+    test_list = QList([5])
+    assert test_list.index(5) == 0

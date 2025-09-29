@@ -32,8 +32,10 @@ def test_take_while_is_lazy() -> None:
         call_count += 1
         return 0
 
-    query([1, 2, 3, 4]).select(expensive_operation).take_while(lambda x: x < 6)
+    result = query([1, 2, 3, 4]).select(expensive_operation).take_while(lambda x: x < 6)
     assert call_count == 0
+    result.to_list()
+    assert call_count == 4
 
 def test_take_while_stops_processing_at_the_first_element_that_fails_the_predidate() -> None:
     processed_values: list[int] = []
