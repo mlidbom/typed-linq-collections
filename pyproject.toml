@@ -34,6 +34,12 @@ Issues = "https://github.com/mlidbom/typed_linq_collections/issues"
 extend-exclude = ["_lib", "_lib_patched", "manually_copied_in_libraries"]
 line-length = 320
 
+
+[tool.autopep8] # Formatter configuration
+max_line_length = 320
+ignore = ["E701", "E702", "E703", "E302", "E303"]  # Allow multiple statements + spacing
+aggressive = 1  # Reduced aggressiveness to preserve more of our style
+
 [tool.ruff.lint]
 
 select = [
