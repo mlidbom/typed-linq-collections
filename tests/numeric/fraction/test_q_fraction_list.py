@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_list_returns_a_list_with_the_same_elements() -> None:
     assert QFractionList([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_list() == [Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_list = QFractionList()
+    assert len(empty_list) == 0
+    assert list(empty_list) == []

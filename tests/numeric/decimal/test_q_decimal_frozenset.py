@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_frozenset_returns_a_frozenset_with_the_same_elements() -> None:
     assert QDecimalFrozenSet([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_frozenset() == frozenset({Decimal("1.1"), Decimal("2.1"), Decimal("3.1")})
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_frozenset = QDecimalFrozenSet()
+    assert len(empty_frozenset) == 0
+    assert frozenset(empty_frozenset) == frozenset()

@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_sequence_returns_a_sequence_with_the_same_elements() -> None:
     assert QFractionSequence([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_sequence().to_list() == [Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_sequence = QFractionSequence()
+    assert len(empty_sequence) == 0
+    assert list(empty_sequence) == []

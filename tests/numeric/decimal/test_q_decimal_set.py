@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_set_returns_a_set_with_the_same_elements() -> None:
     assert QDecimalSet([Decimal("1.1"), Decimal("2.1"), Decimal("3.1")]).to_set() == {Decimal("1.1"), Decimal("2.1"), Decimal("3.1")}
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_set = QDecimalSet()
+    assert len(empty_set) == 0
+    assert set(empty_set) == set()

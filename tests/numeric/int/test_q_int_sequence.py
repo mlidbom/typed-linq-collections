@@ -66,3 +66,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_sequence_returns_a_sequence_with_the_same_elements() -> None:
     assert QIntSequence([1, 2, 3]).to_sequence().to_list() == [1, 2, 3]
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_sequence = QIntSequence()
+    assert len(empty_sequence) == 0
+    assert list(empty_sequence) == []

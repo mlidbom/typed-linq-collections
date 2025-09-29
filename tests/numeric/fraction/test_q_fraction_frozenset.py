@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_frozenset_returns_a_frozenset_with_the_same_elements() -> None:
     assert QFractionFrozenSet([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_frozenset() == frozenset({Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)})
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_frozenset = QFractionFrozenSet()
+    assert len(empty_frozenset) == 0
+    assert frozenset(empty_frozenset) == frozenset()

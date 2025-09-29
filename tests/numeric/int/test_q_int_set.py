@@ -66,3 +66,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_set_returns_a_set_with_the_same_elements() -> None:
     assert QIntSet([1, 2, 3]).to_set() == {1, 2, 3}
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_set = QIntSet()
+    assert len(empty_set) == 0
+    assert set(empty_set) == set()

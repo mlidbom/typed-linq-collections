@@ -68,3 +68,8 @@ def test_average_or_default_returns_0_on_on_empty_collection() -> None:
 
 def test_to_set_returns_a_set_with_the_same_elements() -> None:
     assert QFractionSet([Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)]).to_set() == {Fraction(11, 10), Fraction(21, 10), Fraction(31, 10)}
+
+def test_constructor_with_no_arguments_creates_empty_collection() -> None:
+    empty_set = QFractionSet()
+    assert len(empty_set) == 0
+    assert set(empty_set) == set()
