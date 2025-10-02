@@ -43,10 +43,9 @@ def query[TItem](value: Iterable[TItem]) -> QIterable[TItem]:
     any iterable (list, tuple, set, generator, etc.) in a QIterable that provides
     a rich set of LINQ-style operations for querying and transforming data.
 
-    The resulting QIterable is lazy and caching - operations are chained together
+    The resulting QIterable is lazy. Operations are chained together
     and only executed when the result is materialized (e.g., via to_list(), any(),
-    count(), etc.). Results are cached so multiple enumerations don't re-execute
-    the entire chain.
+    count(), etc.).
 
     Args:
         value: Any iterable object (list, tuple, set, generator, range, etc.)
@@ -57,26 +56,15 @@ def query[TItem](value: Iterable[TItem]) -> QIterable[TItem]:
         transforming the data.
 
     Examples:
-        >>> # From a list
         >>> query([1, 2, 3, 4, 5]).where(lambda x: x > 2).to_list()
         [3, 4, 5]
 
-        >>> # From a generator
-        >>> def numbers():
-        ...     for i in range(5):
-        ...         yield i
-        >>> query(numbers()).select(lambda x: x * 2).to_list()
-        [0, 2, 4, 6, 8]
-
-        >>> # From a string (iterable of characters)
         >>> query("hello").where(lambda c: c != 'l').to_list()
         ['h', 'e', 'o']
 
-        >>> # Chaining operations
         >>> query(range(10)).where(lambda x: x % 2 == 0).select(lambda x: x ** 2).take(3).to_list()
         [0, 4, 16]
 
-        >>> # Complex transformations
         >>> people = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
         >>> query(people).where(lambda p: p[1] >= 30).select(lambda p: p[0]).to_list()
         ['Bob', 'Charlie']
@@ -90,12 +78,12 @@ class QIterable[T](Iterable[T], ABC):
 
     @property
     def cast(self) -> QCast[T]:
-        """Provides access to type casting operations for elements in this iterable.
+        """Provides casting operations for elements in this iterable.
 
-        This property returns a QCast object that performs type system casting without
+        This property returns a QCast object that performs type casting without
         value conversion. For actual value conversion (like string to int), use select()
-        with the target type constructor instead. The cast operations are for type safety
-        and accessing type-specific methods, not for transforming values.
+        with the target type constructor. The cast operations are for accessing type-specific methods with autocomplete,
+        not for transforming values.
 
         Returns:
             A QCast[T] object that provides type casting methods for the iterable elements.
@@ -116,29 +104,7 @@ class QIterable[T](Iterable[T], ABC):
         """
         return C.cast(self)
 
-    def _lazy(self, factory: Func[Iterable[T]]) -> QIterable[T]:
-        """Creates a lazy iterable that defers execution until enumerated.
-
-        This internal method is used throughout the library to create lazy, deferred
-        iterables that don't execute their logic until the result is actually consumed.
-        This enables efficient chaining of operations without intermediate collections.
-
-        Args:
-            factory: A function that produces an iterable when called. The function
-                    is not called until the resulting iterable is enumerated.
-
-        Returns:
-            A new QIterable that will call the factory function when enumerated.
-
-        Examples:
-            >>> # Internal usage - creates a lazy select operation
-            >>> iterable._lazy(lambda: (x * 2 for x in [1, 2, 3]))
-
-        Note:
-            This is an internal method used by other operations. Use specific
-            methods like select(), where(), etc. instead of calling this directly.
-        """
-        return C.lazy_iterable(factory)
+    def _lazy(self, factory: Func[Iterable[T]]) -> QIterable[T]: return C.lazy_iterable(factory)
 
     # region  static factory methods
     @staticmethod
@@ -146,7 +112,7 @@ class QIterable[T](Iterable[T], ABC):
         """Creates an empty iterable with no elements.
 
         This factory method returns a singleton empty iterable that contains no elements.
-        The same instance is returned on each call for efficiency. The returned type
+        The same immutable instance is returned on each call. The returned type
         uses Never to indicate it contains no elements of any type.
 
         Returns:
@@ -349,8 +315,8 @@ class QIterable[T](Iterable[T], ABC):
     def pipe[TReturn](self, action: Selector[QIterable[T], TReturn]) -> TReturn:
         """Pipes this iterable through a function and returns the result.
 
-        This is useful for functional composition, allowing you to apply a function to the iterable
-        without breaking the method chain.
+        This is useful for functional composition, allowing you to pass the iterable
+        to another function without breaking the method chain.
 
         Args:
             action: A function that takes this QIterable and returns a result of type TReturn.
