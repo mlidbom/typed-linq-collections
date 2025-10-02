@@ -1562,7 +1562,7 @@ class QIterable[T](Iterable[T], ABC):
 
         This method transforms the elements into key-value pairs by applying the selectors,
         then creates a QDict from the results. By default, duplicate keys will raise a
-        ValueError so that the caller is not surprised by the surprising behavior of the last value winning which is rather unexpected.
+        ValueError so that the caller is not surprised by the surprising behavior of the last value winning which can create nasty bugs.
          Set allow_duplicates=True to use Python dict behavior where the last value overwrites previous ones.
 
         Args:
