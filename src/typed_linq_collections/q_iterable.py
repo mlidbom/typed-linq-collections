@@ -422,7 +422,7 @@ class QIterable[T](Iterable[T], ABC):
             A QIntIterable containing the same integer elements with access to numeric operations.
 
         Examples:
-            >>> int_query = query([1, 2, 3]).select(int).as_ints()
+            >>> int_query = query(["1", "2", "3"]).select(int).as_ints()
             >>> int_query.sum()  # Now has access to sum() method
             6
             >>> int_query.average()  # And average() method
