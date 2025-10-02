@@ -431,7 +431,7 @@ class QIterable[T](Iterable[T], ABC):
             >>> int_query.sum()  # Now has access to sum() method
             6
             >>> int_query.average()  # And average() method
-            2.0
+            2
 
         Note:
             This method can only be called when the iterable contains int elements.
