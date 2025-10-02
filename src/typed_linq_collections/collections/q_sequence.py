@@ -10,6 +10,18 @@ from typed_linq_collections.q_iterable import QIterable
 
 
 class QSequence[TItem](Sequence[TItem], QIterable[TItem], ABC):
+    """Abstract base class for sequence-like collections with LINQ-style query operations.
+
+    QSequence provides the foundation for ordered, indexed collections that support both
+    the Python Sequence protocol and LINQ-style operations. It serves as the base class
+    for concrete implementations like QList and QImmutableSequence, providing common
+    functionality for indexed access and sequence-specific operations.
+
+    Inheritance:
+    - Inherits from Sequence[TItem] for standard sequence operations (indexing, length, etc.)
+    - Implements QIterable[TItem] for LINQ-style query operations
+    - Abstract base class - must be subclassed for concrete implementations
+    """
     __slots__: tuple[str, ...] = ()
     @override
     def _optimized_length(self) -> int: return len(self)
