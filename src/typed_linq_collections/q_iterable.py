@@ -87,13 +87,8 @@ class QIterable[T](Iterable[T], ABC):
     - **Interoperability**: Works with any Python iterable and converts to standard collections
     - **Performance**: Optimized implementations with zero-overhead constructors where possible
 
-    Entry Points:
-    - Use the global `query()` function to create QIterables from any iterable
-    - Use static factory methods like `QIterable.range()`, `QIterable.repeat()`
-    - Use collection-specific constructors like `QList()`, `QSet()`, etc.
-
     Inheritance:
-    This is an abstract base class. Concrete implementations include:
+    Concrete implementations which inherit from the builtin versions and interoperate seamlessly with them include:
     - QList, QSet, QFrozenSet - collection wrappers
     - QSequence - immutable sequence
     - QIntIterable, QFloatIterable - numeric specializations
