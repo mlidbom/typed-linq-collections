@@ -1653,7 +1653,7 @@ class QIterable[T](Iterable[T], ABC):
         """
 
     @overload
-    def group_by[TKey, TElement](self, key: Selector[T, TKey], select: Selector[T, TElement]) -> QIterable[QGrouping[TKey, TElement]]:
+    def group_by[TKey, TSelected](self, key: Selector[T, TKey], select: Selector[T, TSelected]) -> QIterable[QGrouping[TKey, TSelected]]:
         """Groups elements by key and transforms each element before grouping.
 
         This overload groups elements based on the key produced by the key selector,
@@ -1664,11 +1664,11 @@ class QIterable[T](Iterable[T], ABC):
         Args:
             key: A function that takes an element of type T and returns a grouping
                 key of type TKey. Elements producing the same key are grouped together.
-            select: A function that transforms each element of type T into type TElement
+            select: A function that transforms each element of type T into type TSelected
                    before adding it to the group.
 
         Returns:
-            A QIterable of QGrouping[TKey, TElement] objects, where each grouping
+            A QIterable of QGrouping[TKey, TSelected] objects, where each grouping
             contains a key and all transformed elements that produced that key.
             Groups appear in the order their keys are first encountered.
 
@@ -1685,7 +1685,7 @@ class QIterable[T](Iterable[T], ABC):
             [(20, ['Alice', 'Charlie']), (30, ['Bob'])]
         """
 
-    def group_by[TKey, TElement](self, key: Selector[T, TKey], select: Selector[T, TElement] | None = None) -> QIterable[QGrouping[TKey, T]] | QIterable[QGrouping[TKey, TElement]]:
+    def group_by[TKey, TSelected](self, key: Selector[T, TKey], select: Selector[T, TSelected] | None = None) -> QIterable[QGrouping[TKey, T]] | QIterable[QGrouping[TKey, TSelected]]:
         """Groups elements by a key selector function and optionally transforms the grouped elements.
 
         This method groups elements that produce the same key when the key selector is applied.
