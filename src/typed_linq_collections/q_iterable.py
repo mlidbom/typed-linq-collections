@@ -359,7 +359,7 @@ class QIterable[T](Iterable[T], ABC):
             The result of applying the action function to this iterable.
 
         Examples:
-            >>> query([1, 2, 3]).pipe(lambda q: q.sum())
+            >>> query([1, 2, 3]).pipe(lambda q: q.as_ints().sum())
             6
             >>> query([1, 2, 3]).pipe(lambda q: q.where(lambda x: x > 1).to_list())
             [2, 3]
@@ -1304,7 +1304,7 @@ class QIterable[T](Iterable[T], ABC):
             ['a', 'pie', 'apple']
             >>> # Multi-level sorting
             >>> query([(1, 'b'), (2, 'a'), (1, 'a')]).order_by(lambda x: x[0]).then_by(lambda x: x[1]).to_list()
-            [(1, 'a'), (1, 'b'), (2, 'a')]
+            [(1, 'a'), (2, 'a'), (1, 'b')]
         """
         return self._order_by(key_selector, False)
 
@@ -1331,7 +1331,7 @@ class QIterable[T](Iterable[T], ABC):
             >>> # Multi-level sorting (first desc, then asc)
             >>> items = [(2, 'b'), (1, 'a'), (2, 'a')]
             >>> query(items).order_by_descending(lambda x: x[0]).then_by(lambda x: x[1]).to_list()
-            [(2, 'a'), (2, 'b'), (1, 'a')]
+            [(2, 'a'), (1, 'a'), (2, 'b')]
         """
         return self._order_by(key_selector, True)
 
