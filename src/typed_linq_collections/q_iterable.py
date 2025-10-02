@@ -76,24 +76,21 @@ class QIterable[T](Iterable[T], ABC):
 
     QIterable provides a rich set of methods for querying, filtering, transforming,
     and aggregating data in a functional programming style, similar to .NET's LINQ
-    or Java's Stream API. It wraps Python iterables with chainable operations that
-    are lazily evaluated until materialized.
-
-    Key Features:
-    - **Lazy Evaluation**: Operations are chained and only executed when results are materialized
-    - **Method Chaining**: Fluent interface allows chaining operations like .where().select().take()
-    - **Type Safety**: Full generic type support with proper type inference in modern Python
-    - **Rich API**: Over 80+ methods covering filtering, mapping, grouping, joining, sorting, and aggregation
-    - **Interoperability**: Works with any Python iterable and converts to standard collections
-    - **Performance**: Optimized implementations with zero-overhead constructors where possible
 
     Inheritance:
-    Concrete implementations which inherit from the builtin versions and interoperate seamlessly with them include:
+    Concrete implementations which inherit from QIterable and the builtin versions and interoperate seamlessly with them include:
     - QList, QSet, QFrozenSet - collection wrappers
     - QSequence - immutable sequence
     - QIntIterable, QFloatIterable - numeric specializations
     - QOrderedIterable - for multi-level sorting
     - QGrouping - for grouped data
+
+    Key Features:
+    - **Lazy Evaluation**: Operations are chained and only executed when results are materialized
+    - **Method Chaining**: Fluent interface allows chaining operations like .where().select().take()
+    - **Type Safety**: Full generic type support with proper type inference in modern Python
+    - **Rich API**: 80+ methods covering filtering, mapping, grouping, joining, sorting, and aggregation
+    - **Interoperability**: Works with any Python iterable and converts to standard collections
     """
     __slots__: tuple[str, ...] = ()
 
