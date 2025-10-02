@@ -215,15 +215,38 @@ class QIntIterable(QIterable[int], ABC):
     def to_frozenset(self) -> QIntFrozenSet: return QIntFrozenSet(self)
 
 class QIntIterableImplementation(QLazyIterableImplementation[int], QIntIterable):
+    """Internal implementation of QIntIterable that defers execution until iteration.
+
+    This class provides the concrete implementation for lazy integer iterables,
+    combining lazy evaluation from QLazyIterableImplementation with integer-specific
+    numeric operations from QIntIterable.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[int]]) -> None:
+        """Initialize with a factory function that produces integer iterables.
+
+        Args:
+            factory: A function that returns an iterable of integers when called.
+        """
         super().__init__(factory)
 
 class QIntOrderedIterable(QOrderedIterable[int], QIntIterable):
+    """An ordered iterable of integers that supports multi-level sorting and numeric operations.
+
+    Combines the multi-level sorting capabilities of QOrderedIterable with the
+    integer-specific numeric operations from QIntIterable. This allows for complex
+    sorting scenarios while maintaining access to methods like sum, min, max, and average.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[int]], sorting_instructions: list[SortInstruction[int]]) -> None:
+        """Initialize with a factory and sorting instructions for integers.
+
+        Args:
+            factory: A function that produces the source iterable of integers.
+            sorting_instructions: A list of sorting instructions defining the sort order.
+        """
         super().__init__(factory, sorting_instructions)
 
 class QIntList(QList[int], QIntIterable):

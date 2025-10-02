@@ -215,15 +215,38 @@ class QFloatIterable(QIterable[float], ABC):
     def to_frozenset(self) -> QFloatFrozenSet: return QFloatFrozenSet(self)
 
 class QFloatIterableImplementation(QLazyIterableImplementation[float], QFloatIterable):
+    """Internal implementation of QFloatIterable that defers execution until iteration.
+
+    This class provides the concrete implementation for lazy float iterables,
+    combining lazy evaluation from QLazyIterableImplementation with float-specific
+    numeric operations from QFloatIterable.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[float]]) -> None:
+        """Initialize with a factory function that produces float iterables.
+
+        Args:
+            factory: A function that returns an iterable of floats when called.
+        """
         super().__init__(factory)
 
 class QFloatOrderedIterable(QOrderedIterable[float], QFloatIterable):
+    """An ordered iterable of floats that supports multi-level sorting and numeric operations.
+
+    Combines the multi-level sorting capabilities of QOrderedIterable with the
+    float-specific numeric operations from QFloatIterable. This allows for complex
+    sorting scenarios while maintaining access to methods like sum, min, max, and average.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[float]], sorting_instructions: list[SortInstruction[float]]) -> None:
+        """Initialize with a factory and sorting instructions for floats.
+
+        Args:
+            factory: A function that produces the source iterable of floats.
+            sorting_instructions: A list of sorting instructions defining the sort order.
+        """
         super().__init__(factory, sorting_instructions)
 
 class QFloatList(QList[float], QFloatIterable):

@@ -5,8 +5,20 @@ from typing import overload, override
 
 
 class ImmutableSequence[TItem](Sequence[TItem]):
+    """An immutable sequence implementation that wraps another sequence.
+
+    Provides an immutable view over a sequence without copying the underlying data.
+    This class serves as the foundation for QImmutableSequence, providing the core
+    immutable sequence behavior while being memory efficient.
+    """
     __slots__: tuple[str, ...] = ("_items",)
+
     def __init__(self, items: Sequence[TItem] = ()) -> None:
+        """Initialize with a sequence to wrap immutably.
+
+        Args:
+            items: The sequence to provide immutable access to. Defaults to empty.
+        """
         self._items: Sequence[TItem] = items  # Direct reference - no copying
 
     @override

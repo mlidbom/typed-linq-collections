@@ -223,15 +223,39 @@ class QDecimalIterable(QIterable[Decimal], ABC):
     def to_frozenset(self) -> QDecimalFrozenSet: return QDecimalFrozenSet(self)
 
 class QDecimalIterableImplementation(QLazyIterableImplementation[Decimal], QDecimalIterable):
+    """Internal implementation of QDecimalIterable that defers execution until iteration.
+
+    This class provides the concrete implementation for lazy Decimal iterables,
+    combining lazy evaluation from QLazyIterableImplementation with Decimal-specific
+    numeric operations from QDecimalIterable.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[Decimal]]) -> None:
+        """Initialize with a factory function that produces Decimal iterables.
+
+        Args:
+            factory: A function that returns an iterable of Decimals when called.
+        """
         super().__init__(factory)
 
 class QDecimalOrderedIterable(QOrderedIterable[Decimal], QDecimalIterable):
+    """An ordered iterable of Decimals that supports multi-level sorting and numeric operations.
+
+    Combines the multi-level sorting capabilities of QOrderedIterable with the
+    Decimal-specific numeric operations from QDecimalIterable. This allows for complex
+    sorting scenarios while maintaining access to methods like sum, min, max, and average
+    with precise decimal arithmetic.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[Decimal]], sorting_instructions: list[SortInstruction[Decimal]]) -> None:
+        """Initialize with a factory and sorting instructions for Decimals.
+
+        Args:
+            factory: A function that produces the source iterable of Decimals.
+            sorting_instructions: A list of sorting instructions defining the sort order.
+        """
         super().__init__(factory, sorting_instructions)
 
 class QDecimalList(QList[Decimal], QDecimalIterable):

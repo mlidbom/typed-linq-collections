@@ -223,15 +223,39 @@ class QFractionIterable(QIterable[Fraction], ABC):
     def to_frozenset(self) -> QFractionFrozenSet: return QFractionFrozenSet(self)
 
 class QFractionIterableImplementation(QLazyIterableImplementation[Fraction], QFractionIterable):
+    """Internal implementation of QFractionIterable that defers execution until iteration.
+
+    This class provides the concrete implementation for lazy Fraction iterables,
+    combining lazy evaluation from QLazyIterableImplementation with Fraction-specific
+    numeric operations from QFractionIterable.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[Fraction]]) -> None:
+        """Initialize with a factory function that produces Fraction iterables.
+
+        Args:
+            factory: A function that returns an iterable of Fractions when called.
+        """
         super().__init__(factory)
 
 class QFractionOrderedIterable(QOrderedIterable[Fraction], QFractionIterable):
+    """An ordered iterable of Fractions that supports multi-level sorting and numeric operations.
+
+    Combines the multi-level sorting capabilities of QOrderedIterable with the
+    Fraction-specific numeric operations from QFractionIterable. This allows for complex
+    sorting scenarios while maintaining access to methods like sum, min, max, and average
+    with exact rational arithmetic.
+    """
     __slots__: tuple[str, ...] = ()
 
     def __init__(self, factory: Func[Iterable[Fraction]], sorting_instructions: list[SortInstruction[Fraction]]) -> None:
+        """Initialize with a factory and sorting instructions for Fractions.
+
+        Args:
+            factory: A function that produces the source iterable of Fractions.
+            sorting_instructions: A list of sorting instructions defining the sort order.
+        """
         super().__init__(factory, sorting_instructions)
 
 class QFractionList(QList[Fraction], QFractionIterable):
