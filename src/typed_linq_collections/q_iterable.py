@@ -92,22 +92,27 @@ class QIterable[T](Iterable[T], ABC):
     def cast(self) -> QCast[T]:
         """Provides access to type casting operations for elements in this iterable.
 
-        This property returns a QCast object that offers various type casting methods
-        such as checked_to() and to() for safely or unsafely converting elements
-        to different types. The casting operations are lazy and deferred until
-        the result is enumerated.
+        This property returns a QCast object that performs type system casting without
+        value conversion. For actual value conversion (like string to int), use select()
+        with the target type constructor instead. The cast operations are for type safety
+        and accessing type-specific methods, not for transforming values.
 
         Returns:
             A QCast[T] object that provides type casting methods for the iterable elements.
 
         Examples:
-            >>> query(["1", "2", "3"]).cast.to(int).to_list()
+            >>> # Type casting (no conversion) - elements remain unchanged
+            >>> query([1, 2, 3]).cast.to(int).to_list()  # Still [1, 2, 3] as ints
             [1, 2, 3]
-            >>> query([1, 2, 3]).cast.checked_to(str).to_list()
-            ['1', '2', '3']
-            >>> # Safe casting with error handling
-            >>> query(["1", "invalid", "3"]).cast.checked_to(int, lambda x: 0).to_list()
-            [1, 0, 3]
+            >>> # Checked casting validates types but doesn't convert
+            >>> query([1, 2, 3]).cast.checked.to(int).to_list()  # Validates all are ints
+            [1, 2, 3]
+            >>> # For actual conversion, use select() instead:
+            >>> query(["1", "2", "3"]).select(int).to_list()  # Converts strings to ints
+            [1, 2, 3]
+            >>> # Accessing type-specific methods after casting
+            >>> query([1, 2, 3]).cast.int().sum()  # Access numeric operations
+            6
         """
         return C.cast(self)
 
