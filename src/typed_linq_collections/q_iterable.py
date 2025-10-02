@@ -1677,12 +1677,6 @@ class QIterable[T](Iterable[T], ABC):
             >>> groups = query(["cat", "dog", "bird", "fish"]).group_by(len, str.upper)
             >>> [(g.key, g.to_list()) for g in groups]
             [(3, ['CAT', 'DOG']), (4, ['BIRD', 'FISH'])]
-
-            >>> # Group people by age range, keeping only names
-            >>> people = [("Alice", 25), ("Bob", 30), ("Charlie", 28)]
-            >>> groups = query(people).group_by(lambda p: p[1] // 10 * 10, lambda p: p[0])
-            >>> [(g.key, g.to_list()) for g in groups]
-            [(20, ['Alice', 'Charlie']), (30, ['Bob'])]
         """
 
     def group_by[TKey, TSelected](self, key: Selector[T, TKey], select: Selector[T, TSelected] | None = None) -> QIterable[QGrouping[TKey, T]] | QIterable[QGrouping[TKey, TSelected]]:
