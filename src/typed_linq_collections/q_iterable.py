@@ -325,10 +325,14 @@ class QIterable[T](Iterable[T], ABC):
             The result of applying the action function to this iterable.
 
         Examples:
-            >>> query([1, 2, 3]).pipe(lambda q: q.as_ints().sum())
-            6
-            >>> query([1, 2, 3]).pipe(lambda q: q.where(lambda x: x > 1).to_list())
-            [2, 3]
+            >>> # Pipe to built-in functions that work with iterables
+            >>> query(["apple", "banana", "cherry"]).pipe(max)
+            'cherry'
+
+            >>> # Pipe to external library functions
+            >>> import statistics
+            >>> query([1, 2, 3, 4, 5]).pipe(statistics.stdev)
+            1.5811388300841898
         """
         return ops.pipe(self, action)
 
@@ -359,24 +363,16 @@ class QIterable[T](Iterable[T], ABC):
         """Returns this iterable as a QIterable[T].
 
         This method provides a way to explicitly convert any QIterable subclass back to
-        the base QIterable type, which can be useful for type consistency or when you
-        want to lose type-specific methods. Since this object is already a QIterable,
-        it simply returns self.
+        the base QIterable type. The primary purpose is to get a variable of a type that is
+        immutable and will cause type checker errors if you try to call mutating methods.
 
         Returns:
             This same QIterable instance.
 
         Examples:
-            >>> int_query = QIterable.range(3)
-            >>> base_query = int_query.as_iterable()
-            >>> base_query is int_query
-            True
-            >>> # Useful for consistent typing
-            >>> def process_generic(items: QIterable[int]) -> int:
-            ...     return items.qcount()
-            >>> int_iterable = QIterable.range(5)
-            >>> process_generic(int_iterable.as_iterable())
-            5
+            >>> q_list = QList([1, 2, 3])
+            >>> an_iterable = q_list.as_iterable()
+            >>> an_iterable is q_list # trying to invoke add on base_query will cause a type checker error
         """
         return self
 
@@ -402,6 +398,7 @@ class QIterable[T](Iterable[T], ABC):
         Note:
             This method can only be called when the iterable contains int elements.
             Use select(int) first if you need to convert elements to integers.
+            Do use a competent type checker, like Pyright
         """
         return ops.as_ints(self)
 
@@ -683,7 +680,6 @@ class QIterable[T](Iterable[T], ABC):
         """Determines whether the iterable contains the specified value.
 
         Uses equality comparison to check if the value exists in the iterable.
-        The method may short-circuit and return True as soon as the value is found.
 
         Args:
             value: The value to search for in the iterable.
@@ -695,10 +691,6 @@ class QIterable[T](Iterable[T], ABC):
             >>> query([1, 2, 3, 4]).contains(3)
             True
             >>> query([1, 2, 3, 4]).contains(5)
-            False
-            >>> query([("a", 1), ("b", 2)]).contains(("a", 1))
-            True
-            >>> query([]).contains(42)
             False
         """
         return ops.contains(self, value)
@@ -718,8 +710,6 @@ class QIterable[T](Iterable[T], ABC):
         Examples:
             >>> query([1, 2, 3, 4, 5]).where(lambda x: x > 3).to_list()
             [4, 5]
-            >>> query([1, 2, 3]).where(lambda x: x == 2).to_list()
-            [2]
         """
         return self._lazy(lambda: ops.where(self, predicate))
 
@@ -732,8 +722,6 @@ class QIterable[T](Iterable[T], ABC):
         Examples:
             >>> query([1, None, 2, None, 3]).where_not_none().to_list()
             [1, 2, 3]
-            >>> query([None, None]).where_not_none().to_list()
-            []
         """
         return self._lazy(lambda: ops.where_not_none(self))
 
@@ -749,8 +737,6 @@ class QIterable[T](Iterable[T], ABC):
         Examples:
             >>> query([1, 2, 2, 3, 3]).distinct().to_list()
             [1, 2, 3]
-            >>> query(["a", "b", "a", "c"]).distinct().to_list()
-            ['a', 'b', 'c']
         """
         return self._lazy(lambda: ops.distinct(self))
 
@@ -767,8 +753,6 @@ class QIterable[T](Iterable[T], ABC):
             A new QIterable containing the first element for each unique key in their original order.
 
         Examples:
-            >>> query([("a", 1), ("a", 2), ("b", 3)]).distinct_by(lambda x: x[0]).to_list()
-            [('a', 1), ('b', 3)]
             >>> query(["apple", "apricot", "banana"]).distinct_by(lambda x: x[0]).to_list()
             ['apple', 'banana']
         """
@@ -796,9 +780,6 @@ class QIterable[T](Iterable[T], ABC):
 
     def take_while(self, predicate: Predicate[T]) -> QIterable[T]:
         """Returns elements from the start of the iterable as long as the predicate is true.
-
-        Stops processing and returns results as soon as the predicate returns False for any element.
-        Elements after the first failing element are not processed or included.
 
         Args:
             predicate: A function that takes an element and returns True to continue taking elements,
@@ -1005,8 +986,6 @@ class QIterable[T](Iterable[T], ABC):
     def any(self, predicate: Predicate[T] | None = None) -> bool:
         """Determines whether any elements satisfy a condition or if the iterable contains elements.
 
-        Short-circuits on the first element that satisfies the predicate for performance.
-
         Args:
             predicate: Optional function that takes an element and returns True if it matches
                       a condition. If None, checks if the iterable contains any elements.
@@ -1030,9 +1009,7 @@ class QIterable[T](Iterable[T], ABC):
     def all(self, predicate: Predicate[T]) -> bool:
         """Determines whether all elements satisfy the specified predicate.
 
-        Short-circuits on the first element that doesn't satisfy the predicate,
-        returning False immediately. Returns True if all elements satisfy the
-        predicate or if the iterable is empty.
+        Returns True if all elements satisfy the predicate or if the iterable is empty.
 
         Args:
             predicate: A function that takes an element and returns True if it satisfies
@@ -1058,7 +1035,6 @@ class QIterable[T](Iterable[T], ABC):
         """Determines whether two iterables are equal by comparing elements in sequence.
 
         Elements are compared using equality (==) in their respective positions.
-        Both iterables must have the same length and identical elements in the same order.
 
         Args:
             other: The iterable to compare with this iterable.
@@ -1219,33 +1195,6 @@ class QIterable[T](Iterable[T], ABC):
 
     # region sorting
     def _order_by(self, key_selector: Selector[T, SupportsRichComparison], descending: bool) -> QOrderedIterable[T]:
-        """Internal method to create a sorted iterable with the specified ordering.
-
-        This is a private helper method used by order_by and order_by_descending to create
-        a QOrderedIterable with the specified sort instruction. The resulting ordered iterable
-        supports additional then_by operations for multi-level sorting.
-
-        Args:
-            key_selector: A function that takes an element and returns a key for comparison.
-                         The key must support rich comparison operations (< > <= >= == !=).
-            descending: Whether to sort in descending order (True) or ascending order (False).
-
-        Returns:
-            A QOrderedIterable that will sort elements by the specified key when enumerated.
-            The sort is stable, preserving the relative order of equal elements.
-
-        Examples:
-            >>> # Internal usage - creates ascending sort
-            >>> query([3, 1, 2])._order_by(lambda x: x, False).to_list()
-            [1, 2, 3]
-            >>> # Internal usage - creates descending sort
-            >>> query([1, 3, 2])._order_by(lambda x: x, True).to_list()
-            [3, 2, 1]
-
-        Note:
-            This is an internal method. Use order_by() or order_by_descending() instead
-            for public API access.
-        """
         return C.ordered_iterable(lambda: self, [SortInstruction(key_selector, descending)])
 
     def order_by(self, key_selector: Selector[T, SupportsRichComparison]) -> QOrderedIterable[T]:
@@ -1304,9 +1253,6 @@ class QIterable[T](Iterable[T], ABC):
     def reversed(self) -> QIterable[T]:
         """Returns a new iterable with elements in reverse order.
 
-        Creates a lazy iterable that will enumerate the elements in reverse order when consumed.
-        The original iterable is consumed to determine the reverse order.
-
         Returns:
             A new QIterable containing the same elements in reverse order.
 
@@ -1327,8 +1273,7 @@ class QIterable[T](Iterable[T], ABC):
         """Projects each element into a new form using a selector function.
 
         This is the fundamental transformation method that applies a function to each element
-        to produce a new sequence of potentially different type. The operation is lazy and
-        deferred until the result is enumerated.
+        to produce a new sequence.
 
         Args:
             selector: A function that takes an element of type T and returns a value of type TReturn.
@@ -1393,8 +1338,6 @@ class QIterable[T](Iterable[T], ABC):
             [1, 2, 3, 4]
             >>> query(["hello", "world"]).select_many(lambda s: s).to_list()
             ['h', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
-            >>> query([1, 2, 3]).select_many(lambda x: range(x)).to_list()
-            [0, 0, 1, 0, 1, 2]
         """
         return C.lazy_iterable(lambda: ops.select_many(self, selector))
 
@@ -1421,8 +1364,6 @@ class QIterable[T](Iterable[T], ABC):
             >>> orders = [(101, 1, 100.0), (102, 2, 200.0), (103, 1, 150.0)]
             >>> query(people).join(orders, lambda p: p[0], lambda o: o[1], lambda p, o: f"{p[1]}: ${o[2]}").to_list()
             ['Alice: $100.0', 'Alice: $150.0', 'Bob: $200.0']
-            >>> query([1, 2, 3]).join(["1a", "2b", "3c"], str, lambda s: s[0], lambda n, s: f"{n}-{s}").to_list()
-            ['1-1a', '2-2b', '3-3c']
         """
         return C.lazy_iterable(lambda: ops.join(self, other, self_key, other_key, select))
 
