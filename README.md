@@ -6,8 +6,9 @@ Name collisions with the standard library are resolved by prefixing the built in
 
 - **Rich Query API**: Almost the full Enumerable set of operators from .net gives excellent support for filtering, mapping, grouping, and more in a fluent API
 - **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
+- **Comprehensive docstrings**: Every method and class is documented, giving excellent discoverability of functionality in any modern IDE/editor.
 - **Lazy Evaluation**: Memory efficient query execution with deferred evaluation for every operation other than the to_* methods which create new collections 
-- **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections
+- **Drop-in compatible collection types**: Collection types that seamlessly replace and interoperate with standard Python collections. QList, QSet, QDict etc
 - **Numeric Specializations**: Dedicated types for `int`, `float`, `Decimal`, and `Fraction` collections
 - **Extensible Design**: QIterable is an abstract class/mixin that can be subclassed by any Iterable type to add full querying capabilities
 - **Comprehensive test suite**: More than 900 tests covering every single line and code branch
