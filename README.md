@@ -1,7 +1,6 @@
 # Typed Linq Collections
 
 Complete LINQ, language integrated query, implementation for Python with full type annotations, comprehensive documentation, 100% test coverage, and queryable drop in replacements for the builtin collection types.
-Query any built in Iterable or use one of the queryable collections that are drop in replacements for standard collections.
 
 - **Rich Query API**: Almost the full Enumerable set of operators from .NET gives excellent support for filtering, mapping, grouping, and more in a fluent API
 - **Comprehensive type annotions**: Gives you full autocomplete and static error analysis if using pyright with vscode or PyCharm. In vscode refactoring within the lambdas work like a charm
