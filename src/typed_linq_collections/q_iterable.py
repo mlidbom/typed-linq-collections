@@ -1557,33 +1557,42 @@ class QIterable[T](Iterable[T], ABC):
         """
         return C.lazy_iterable(lambda: ops.zip_tuple3(self, second, third, fourth))
 
-    def to_dict[TKey, TValue](self, key_selector: Selector[T, TKey], value_selector: Selector[T, TValue]) -> QDict[TKey, TValue]:
+    def to_dict[TKey, TValue](self, key_selector: Selector[T, TKey], value_selector: Selector[T, TValue], allow_duplicates: bool = False) -> QDict[TKey, TValue]:
         """Creates a dictionary from the iterable using key and value selector functions.
 
         This method transforms the elements into key-value pairs by applying the selectors,
-        then creates a QDict from the results. If multiple elements produce the same key,
-        the last element's value will be used in the dictionary.
+        then creates a QDict from the results. By default, duplicate keys will raise a
+        ValueError so that the caller is not surprised by the surprising behavior of the last value winning which is rather unexpected.
+         Set allow_duplicates=True to use Python dict behavior where the last value overwrites previous ones.
 
         Args:
             key_selector: A function that takes an element and returns the key for the dictionary entry.
             value_selector: A function that takes an element and returns the value for the dictionary entry.
+            allow_duplicates: If False (default), raises ValueError on duplicate keys to match .NET behavior.
+                            If True, uses Python dict behavior where last value wins.
 
         Returns:
             A new QDict containing the key-value pairs created from the elements.
 
         Raises:
-            ValueError: If duplicate keys are encountered (implementation dependent).
+            ValueError: If duplicate keys are encountered and allow_duplicates=False.
 
         Examples:
             >>> people = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
-            >>> query(people).to_dict(lambda p: p[0], lambda p: p[1]).to_list()
+            >>> query(people).to_dict(lambda p: p[0], lambda p: p[1])
             # Results in QDict: {"Alice": 25, "Bob": 30, "Charlie": 35}
             >>>
-            >>> words = ["apple", "banana", "cherry"]
-            >>> query(words).to_dict(lambda w: w[0], len)
-            # Results in QDict: {"a": 5, "b": 6, "c": 6}
+            >>> # Duplicate keys raise ValueError by default
+            >>> try:
+            ...     query([("same", 1), ("same", 2)]).to_dict(lambda p: p[0], lambda p: p[1])
+            ... except ValueError:
+            ...     print("Duplicate key error")
+            >>>
+            >>> # Allow duplicates (Python dict behavior)
+            >>> query([("same", 1), ("same", 2)]).to_dict(lambda p: p[0], lambda p: p[1], allow_duplicates=True)
+            # Results in QDict: {"same": 2}  # Last value wins
         """
-        return ops.to_dict(self, key_selector, value_selector)
+        return ops.to_dict(self, key_selector, value_selector, allow_duplicates)
 
     def chunk(self, size: int) -> QIterable[QList[T]]:
         """Splits the elements into chunks of the specified size.
