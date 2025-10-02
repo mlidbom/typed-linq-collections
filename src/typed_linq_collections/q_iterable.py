@@ -1861,8 +1861,7 @@ class QIterable[T](Iterable[T], ABC):
         """Returns the last element in the iterable, or None if no element is found.
 
         This method is similar to last() but returns None instead of raising an exception
-        when no matching element is found. This provides a safe way to get the last
-        element without exception handling.
+        when no matching element is found.
 
         Args:
             predicate: Optional function that takes an element and returns True if it
@@ -1888,7 +1887,7 @@ class QIterable[T](Iterable[T], ABC):
         """Returns the element at the specified zero-based index position.
 
         This method provides indexed access to elements in the iterable, similar to
-        list indexing but works with any iterable. The index must be within the
+        list indexing but works with any QIterable. The index must be within the
         bounds of the sequence, otherwise an exception is raised.
 
         Args:
