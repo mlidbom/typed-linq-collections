@@ -1798,12 +1798,11 @@ class QIterable[T](Iterable[T], ABC):
         return ops.single(self, predicate)
 
     def single_or_none(self, predicate: Predicate[T] | None = None) -> T | None:
-        """Returns the single element in the iterable, or None if zero or multiple elements exist.
+        """Returns the single element in the iterable, or None if no element exists.
 
-        This method is similar to single() but returns None instead of raising exceptions
-        when the sequence doesn't contain exactly one element. This provides a safe way
-        to get a single element without exception handling, useful when you want to
-        check for uniqueness.
+        This method is similar to single() but returns None instead of raising an exception
+        when the sequence contains no elements. Like single(), it raises an
+        exception if multiple elements exist.
 
         Args:
             predicate: Optional function that takes an element and returns True if it
@@ -1811,19 +1810,22 @@ class QIterable[T](Iterable[T], ABC):
 
         Returns:
             The single element in the sequence, the single element matching the predicate,
-            or None if zero or multiple elements exist.
+            or None if no elements exist.
+
+        Raises:
+            InvalidOperationError: If more than one element exists or matches the predicate.
 
         Examples:
             >>> query([42]).single_or_none()
             42
             >>> query([]).single_or_none()
             None
-            >>> query([1, 2]).single_or_none()
-            None
             >>> query([1, 2, 3]).single_or_none(lambda x: x == 2)
             2
-            >>> query([1, 2, 3]).single_or_none(lambda x: x > 1)
-            None  # Multiple elements match
+            >>> query([1, 2, 3]).single_or_none(lambda x: x == 4)
+            None
+            >>> query([1, 2]).single_or_none()  # Raises InvalidOperationError
+            >>> query([1, 2, 3]).single_or_none(lambda x: x > 1)  # Raises InvalidOperationError
         """
         return ops.single_or_none(self, predicate)
 
