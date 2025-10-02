@@ -71,9 +71,35 @@ def query[TItem](value: Iterable[TItem]) -> QIterable[TItem]:
     """
     return C.caching_iterable(value)
 
-# note to coders, you can trust that the methods on single lines do nothing except delegate to the corresponding operations method,
-# or to ZeroImportOverheadConstructors, knowing that, keeping them on single lines make it easier to read through the definitions
 class QIterable[T](Iterable[T], ABC):
+    """An abstract base class for LINQ-style query operations on iterables.
+
+    QIterable provides a rich set of methods for querying, filtering, transforming,
+    and aggregating data in a functional programming style, similar to .NET's LINQ
+    or Java's Stream API. It wraps Python iterables with chainable operations that
+    are lazily evaluated until materialized.
+
+    Key Features:
+    - **Lazy Evaluation**: Operations are chained and only executed when results are materialized
+    - **Method Chaining**: Fluent interface allows chaining operations like .where().select().take()
+    - **Type Safety**: Full generic type support with proper type inference in modern Python
+    - **Rich API**: Over 80+ methods covering filtering, mapping, grouping, joining, sorting, and aggregation
+    - **Interoperability**: Works with any Python iterable and converts to standard collections
+    - **Performance**: Optimized implementations with zero-overhead constructors where possible
+
+    Entry Points:
+    - Use the global `query()` function to create QIterables from any iterable
+    - Use static factory methods like `QIterable.range()`, `QIterable.repeat()`
+    - Use collection-specific constructors like `QList()`, `QSet()`, etc.
+
+    Inheritance:
+    This is an abstract base class. Concrete implementations include:
+    - QList, QSet, QFrozenSet - collection wrappers
+    - QSequence - immutable sequence
+    - QIntIterable, QFloatIterable - numeric specializations
+    - QOrderedIterable - for multi-level sorting
+    - QGrouping - for grouped data
+    """
     __slots__: tuple[str, ...] = ()
 
     @property
