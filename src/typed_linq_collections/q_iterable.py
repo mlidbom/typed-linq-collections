@@ -2055,12 +2055,12 @@ class QIterable[T](Iterable[T], ABC):
         """Converts this iterable to a QList containing all elements.
 
         This method creates a new QList instance containing all elements from this
-        iterable. The QList provides additional LINQ-style methods and maintains
-        the order of elements. This is one of the most commonly used materialization
-        methods for converting lazy iterables into concrete collections.
+        iterable. QList is a subtype of the builtin list and intoperates seamlessly with it,
+        while also suppplying all the query operators from QIterable.
 
         Returns:
-            A new QList[T] containing all elements from this iterable in the same order.
+            A new QList[T] containing all elements from this iterable in the same order,
+            providing all the query operators from QIterable.
 
         Examples:
             >>> query([1, 2, 3]).where(lambda x: x > 1).to_list()
@@ -2079,12 +2079,13 @@ class QIterable[T](Iterable[T], ABC):
         """Converts this iterable to a QSet containing all unique elements.
 
         This method creates a new QSet instance containing all distinct elements
-        from this iterable. Duplicate elements are automatically removed, and the
-        resulting QSet provides set operations and additional LINQ-style methods.
-        The order of elements in the set is not guaranteed.
+        from this iterable. Duplicate elements are automatically removed.
+        QSet is a subtype of the builtin set and interoperates seamlessly with it,
+        while also suppplying all the query operators from QIterable
 
         Returns:
-            A new QSet[T] containing all unique elements from this iterable.
+            A new QSet[T] containing all unique elements from this iterable,
+            providing all the query operators from QIterable.
 
         Examples:
             >>> query([1, 2, 2, 3, 3]).to_set()
@@ -2104,12 +2105,13 @@ class QIterable[T](Iterable[T], ABC):
 
         This method creates a new QFrozenSet instance containing all distinct
         elements from this iterable. Like to_set(), duplicates are automatically
-        removed, but the resulting collection is immutable. QFrozenSet provides
-        set operations and additional LINQ-style methods while guaranteeing
-        immutability.
+        removed, but the resulting collection is immutable. QfrozenSet is a subtype
+        of the builtin frozenset and interoperates seamlessly with it,
+        while also supplying all the query operators from QIterable.
 
         Returns:
-            A new QFrozenSet[T] containing all unique elements from this iterable.
+            A new QFrozenSet[T] containing all unique elements from this iterable,
+            providing all the query operators from QIterable.
 
         Examples:
             >>> query([1, 2, 2, 3]).to_frozenset()
@@ -2128,13 +2130,12 @@ class QIterable[T](Iterable[T], ABC):
     def to_sequence(self) -> QSequence[T]:
         """Converts this iterable to a QSequence containing all elements.
 
-        This method creates a new QSequence instance containing all elements from
-        this iterable. QSequence is an immutable, ordered collection that provides
-        additional LINQ-style methods while maintaining element order and preventing
-        modification after creation.
+        This method creates a new immutable QSequence instance containing all elements from
+        this iterable. QSequence provides all the query operators from QIterable.
 
         Returns:
-            A new QSequence[T] containing all elements from this iterable in the same order.
+            A new QSequence[T] containing all elements from this iterable in the same order,
+            providing all the query operators from QIterable.
 
         Examples:
             >>> query([1, 2, 3]).to_sequence()
@@ -2154,9 +2155,7 @@ class QIterable[T](Iterable[T], ABC):
         """Converts this iterable to a standard Python list containing all elements.
 
         This method creates a new Python built-in list instance containing all
-        elements from this iterable. Unlike to_list() which returns a QList with
-        additional LINQ methods, this returns a standard Python list that can be
-        used with regular Python operations and libraries.
+        elements from this iterable.
 
         Returns:
             A new Python list[T] containing all elements from this iterable in the same order.
