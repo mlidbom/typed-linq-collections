@@ -1206,7 +1206,7 @@ class QIterable[T](Iterable[T], ABC):
 
         Args:
             key_selector: A function that takes an element and returns a key for comparison.
-                         The key must support rich comparison operations (< > <= >= == !=).
+                         The key must support comparison operations (at minimum __lt__).
 
         Returns:
             A QOrderedIterable that will sort elements in ascending order by the specified key
@@ -1232,7 +1232,7 @@ class QIterable[T](Iterable[T], ABC):
 
         Args:
             key_selector: A function that takes an element and returns a key for comparison.
-                         The key must support rich comparison operations (< > <= >= == !=).
+                         The key must support comparison operations (at minimum __lt__).
 
         Returns:
             A QOrderedIterable that will sort elements in descending order by the specified key
@@ -1946,7 +1946,7 @@ class QIterable[T](Iterable[T], ABC):
 
         Args:
             key_selector: A function that takes an element and returns a comparable key.
-                         The key must support rich comparison operations (< > <= >= == !=).
+                         The key must support comparison operations (at minimum __lt__).
 
         Returns:
             The element that produces the minimum key value.
@@ -1974,7 +1974,7 @@ class QIterable[T](Iterable[T], ABC):
 
         Args:
             key_selector: A function that takes an element and returns a comparable key.
-                         The key must support rich comparison operations (< > <= >= == !=).
+                         The key must support comparison operations (at minimum __lt__).
 
         Returns:
             The element that produces the maximum key value.
