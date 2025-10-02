@@ -8,6 +8,8 @@ if TYPE_CHECKING:
 
 
 def element_at[TItem](self: Iterable[TItem], index: int) -> TItem:
+    if index < 0:
+        raise IndexError(f"Index {index} was outside the bounds of the collection.")
     try:
         return next(itertools.islice(self, index, index + 1))
     except StopIteration:

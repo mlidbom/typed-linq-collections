@@ -22,3 +22,13 @@ def test_throws_if_index_is_out_of_range() -> None:
     throws_test((1, 2, 3),
                 lambda x: x.element_at(3),
                 IndexError)
+
+def test_throws_if_index_is_negative_one() -> None:
+    throws_test((1, 2, 3),
+                lambda x: x.element_at(-1),
+                IndexError)
+
+def test_throws_if_index_is_negative_five() -> None:
+    throws_test((1, 2, 3),
+                lambda x: x.element_at(-5),
+                IndexError)

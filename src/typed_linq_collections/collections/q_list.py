@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 class QList[TItem](list[TItem], QSequence[TItem], QIterable[TItem]):
     __slots__: tuple[str, ...] = ()
+
     def __init__(self, iterable: Iterable[TItem] = ()) -> None:
         super().__init__(iterable)
 
@@ -23,7 +24,10 @@ class QList[TItem](list[TItem], QSequence[TItem], QIterable[TItem]):
     def reversed(self) -> QIterable[TItem]: return QLazyIterableImplementation[TItem](lambda: reversed(self))
 
     @override
-    def element_at(self, index: int) -> TItem: return self[index]
+    def element_at(self, index: int) -> TItem:
+        if index < 0:
+            raise IndexError(f"Index {index} was outside the bounds of the collection.")
+        return self[index]
 
     @override
     def index(self, value: TItem, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize) -> int:

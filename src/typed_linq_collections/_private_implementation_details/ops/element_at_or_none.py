@@ -9,4 +9,6 @@ if TYPE_CHECKING:
 
 def element_at_or_none[TItem](self: Iterable[TItem],
                               index: int) -> TItem | None:
+    if index < 0:
+        return None
     return next(itertools.islice(self, index, index + 1), None)

@@ -22,3 +22,23 @@ def test_returns_none_if_index_is_out_of_range() -> None:
     value_test_including_unordered_collections([1, 2, 3],
                                                lambda x: x.element_at_or_none(3),
                                                None)
+
+def test_returns_none_if_index_is_negative_one() -> None:
+    value_test_including_unordered_collections([1, 2, 3],
+                                               lambda x: x.element_at_or_none(-1),
+                                               None)
+
+def test_returns_none_if_index_is_negative_five() -> None:
+    value_test_including_unordered_collections([1, 2, 3],
+                                               lambda x: x.element_at_or_none(-5),
+                                               None)
+
+def test_returns_none_if_index_is_negative_on_empty_collection() -> None:
+    value_test_including_unordered_collections([],
+                                               lambda x: x.element_at_or_none(-1),
+                                               None)
+
+def test_returns_none_if_index_is_zero_on_empty_collection() -> None:
+    value_test_including_unordered_collections([],
+                                               lambda x: x.element_at_or_none(0),
+                                               None)

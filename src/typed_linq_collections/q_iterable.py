@@ -1916,8 +1916,7 @@ class QIterable[T](Iterable[T], ABC):
         """Returns the element at the specified index, or None if the index is out of bounds.
 
         This method is similar to element_at() but returns None instead of raising an
-        exception when the index is out of bounds. This provides a safe way to access
-        elements by index without exception handling.
+        exception when the index is out of bounds.
 
         Args:
             index: The zero-based index of the element to retrieve. Can be any integer value.
