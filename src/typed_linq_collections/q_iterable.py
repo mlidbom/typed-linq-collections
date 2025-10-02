@@ -1746,8 +1746,7 @@ class QIterable[T](Iterable[T], ABC):
         """Returns the first element in the iterable, or None if no element is found.
 
         This method is similar to first() but returns None instead of raising an exception
-        when no matching element is found. This provides a safe way to get the first
-        element without exception handling.
+        when no matching element is found.
 
         Args:
             predicate: Optional function that takes an element and returns True if it
