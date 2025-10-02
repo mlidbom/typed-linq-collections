@@ -7,8 +7,8 @@ where = ["src"]
 
 [project]
 name = "typed-linq-collections"
-version = "0.9.2"
-description = "Complete LINQ, language integrated query, implementation for Python with full type annotations, comprehensive documentation, and 100% test coverage."
+version = "0.9.3"
+description = "Complete LINQ, language integrated query, implementation for Python with full type annotations, comprehensive documentation, 100% test coverage, and queryable drop in replacements for the builtin collection types."
 readme = "README.md"
 authors = [
     { name = "Magnus Lidbom" }
