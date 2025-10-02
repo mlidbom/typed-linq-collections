@@ -62,5 +62,5 @@ Specialized collections with additional numeric operations:
 - **`QFloatIterable`** - For float collections
 - **`QDecimalIterable`** - For Decimal collections
 - **`QFractionIterable`** - For Fraction collections
-- 
-and so on with equivalents for QList, QSet, QDict, QFrozenSet, QDefaultDict.
+
+and so on with numeric specializations of QList, QSet, QDict, QDefaultDict, QFrozenSet.
